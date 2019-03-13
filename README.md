@@ -10,3 +10,5 @@ This repository provides setup scripts and code for simulating distributed softw
 
 Although intended for ROS2, ns3_gazebo has application in any domain where nodes must communicate with each other over Wifi while communicating with a central process using direct network communication.
 
+ns3_gazebo Wiki: [[home]]
+
