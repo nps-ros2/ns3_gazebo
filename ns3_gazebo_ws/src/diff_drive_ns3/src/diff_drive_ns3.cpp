@@ -43,7 +43,7 @@ void set_up_ns3(ns3::NodeContainer& ns3_nodes) {
   ns3::Ptr<ns3::ListPositionAllocator>positionAlloc =
                          ns3::CreateObject<ns3::ListPositionAllocator>();
   for (int i=0; i<COUNT; i++) {
-    positionAlloc->Add(ns3::Vector(i, 0.0, 0.0));
+    positionAlloc->Add(ns3::Vector(0.0, 0.0, 0.0));
   }
   ns3::MobilityHelper mobility;
   mobility.SetPositionAllocator(positionAlloc);
