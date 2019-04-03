@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>diff_drive_ns3</name>
+  <version>0.0.0</version>
+  <description>ROS2 diff drive nav_msgs and ns-3 driver</description>
+  <maintainer email="bdallen@nps.edu">Bruce Allen</maintainer>
+  <license>See COPYING.md</license>
+
+  <buildtool_depend>ament_cmake_ros</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>urdf</depend>
+  <depend>nav_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>
+
