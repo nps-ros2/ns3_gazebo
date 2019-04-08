@@ -1,5 +1,5 @@
 drawings = \
-	nns_simple.png
+	nns_simple.png real.png simulated.png
 
 .SUFFIXES: .svg .pdf
 .SUFFIXES: .svg .png
