@@ -1392,8 +1392,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="312.76983"
-     inkscape:cy="527.23339"
+     inkscape:cx="348.82629"
+     inkscape:cy="393.62237"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1424,92 +1424,90 @@
      transform="translate(0,-68.399979)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="161.39583"
-       y="14.954146"
-       id="text4636"><tspan
+       style="font-style:normal;font-weight:normal;font-size:6.34566641px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="162.1264"
+       y="14.888933"
+       id="text4636"
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
          id="tspan4634"
-         x="161.39583"
-         y="20.572409"
-         style="font-size:6.3499999px;stroke-width:0.26458332" /></text>
+         x="162.1264"
+         y="20.503361"
+         style="font-size:6.34566641px;stroke-width:0.26440275" /></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="161.925"
-       y="10.720814"
-       id="text4640"><tspan
+       style="font-style:normal;font-weight:normal;font-size:6.34566641px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="162.65521"
+       y="10.658489"
+       id="text4640"
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
          id="tspan4638"
-         x="161.925"
-         y="16.339075"
-         style="font-size:6.3499999px;stroke-width:0.26458332" /></text>
+         x="162.65521"
+         y="16.272917"
+         style="font-size:6.34566641px;stroke-width:0.26440275" /></text>
     <rect
        id="rect3713-5-7"
-       width="124.18598"
-       height="27.083908"
-       x="24.69034"
-       y="177.75697"
-       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.42218322;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       width="123.9285"
+       height="27.103149"
+       x="25.478693"
+       y="177.82817"
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.42189512;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444447px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="86.278961"
-       y="184.81667"
-       id="text4522-6-5"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="87.060799"
+       y="184.63553"
+       id="text4522-6-5"
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="86.278961"
-         y="184.81667"
-         style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         x="87.060799"
+         y="184.63553"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071">Gazebo</tspan></text>
-    <g
-       id="g4994"
-       transform="translate(29.368748,51.329167)">
-      <rect
-         y="140.61928"
-         x="4.7505569"
-         height="7.4322205"
-         width="29.128054"
-         id="rect4989"
-         style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35711342;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text4522-6-5-3"
-         y="146.17502"
-         x="18.779905"
-         style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1071-6"
-           style="font-size:4.93888903px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="146.17502"
-           x="18.779905"
-           sodipodi:role="line">R1 Physics</tspan></text>
-    </g>
-    <g
-       transform="translate(104.51045,51.329175)"
-       id="g4994-7">
-      <rect
-         y="140.61928"
-         x="4.7505569"
-         height="7.4322205"
-         width="29.128054"
-         id="rect4989-5"
-         style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35711342;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text4522-6-5-3-3"
-         y="146.17502"
-         x="18.779905"
-         style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1071-6-5"
-           style="font-size:4.93888903px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="146.17502"
-           x="18.779905"
-           sodipodi:role="line">R2 Physics</tspan></text>
-    </g>
+    <rect
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35686973;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4989"
+       width="29.067661"
+       height="7.4375005"
+       x="34.888107"
+       y="192.02972" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="48.956509"
+       y="197.31439"
+       id="text4522-6-5-3"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="48.956509"
+         y="197.31439"
+         style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1071-6">R1 Physics</tspan></text>
+    <rect
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35686973;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4989-5"
+       width="29.067661"
+       height="7.4375005"
+       x="109.87402"
+       y="192.02972" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="124.04694"
+       y="197.31441"
+       id="text4522-6-5-3-3"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="124.04694"
+         y="197.31441"
+         style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1071-6-5">R2 Physics</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot5068"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:21.33333333px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-style:normal;font-weight:normal;font-size:21.33333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.99792666,0,0,1.0007104,0.83954417,-0.05508505)"><flowRegion
          id="flowRegion5070"><rect
            id="rect5072"
            width="182"
@@ -1518,99 +1516,93 @@
            y="213" /></flowRegion><flowPara
          id="flowPara5074" /></flowRoot>    <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="49.011299"
-       y="101.1959"
-       id="text4522-6-5-7-4-3-3"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="49.818565"
+       y="101.07183"
+       id="text4522-6-5-7-4-3-3"
+       transform="scale(0.99860814,1.0013938)"><tspan
          id="tspan1575-5"
          sodipodi:role="line"
-         x="49.011299"
-         y="101.1959"
-         style="font-size:5.64444494px;text-align:center;text-anchor:middle;stroke-width:0.26458332">Distributed Robot 1</tspan></text>
-    <g
-       id="g4994-2-7"
-       transform="translate(139.92381,28.045819)"
-       inkscape:transform-center-x="-1.8520834" />
+         x="49.818565"
+         y="101.07183"
+         style="font-size:5.64059305px;text-align:center;text-anchor:middle;stroke-width:0.26440275">Distributed Robot 1</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444447px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
-       x="59.852165"
-       y="174.70818"
-       id="text7046-2-8"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440278"
+       x="60.652035"
+       y="174.53394"
+       id="text7046-2-8"
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="59.852165"
-         y="174.70818"
-         style="font-size:5.64444447px;stroke-width:0.26458335"
+         x="60.652035"
+         y="174.53394"
+         style="font-size:5.64059258px;stroke-width:0.26440278"
          id="tspan7048-0-4">Simulated Physics</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="64.585922"
-       y="117.1591"
-       id="text4522-6-5-7-4-6"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="65.382561"
+       y="117.02414"
+       id="text4522-6-5-7-4-6"
+       transform="scale(0.99860814,1.0013938)"><tspan
          id="tspan1575"
          sodipodi:role="line"
-         x="64.585922"
-         y="117.1591"
-         style="font-size:5.64444494px;text-align:start;text-anchor:start;stroke-width:0.26458332">Real Autonomy</tspan></text>
-    <g
-       id="g1641"
-       transform="translate(-4.7625003,-10.054167)">
-      <rect
-         style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.29513475;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="130.86224"
-         x="30.579943"
-         height="35.942204"
-         width="45.731781"
-         id="rect3713-5-7-8-9" />
-      <text
-         id="text4522-6-5-7-4"
-         y="137.4563"
-         x="53.338257"
-         style="font-style:normal;font-weight:normal;font-size:5.64444447px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1619"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="137.4563"
-           x="53.338257"
-           sodipodi:role="line">Network</tspan><tspan
-           id="tspan1630"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="144.51186"
-           x="53.338257"
-           sodipodi:role="line">Namespace</tspan><tspan
-           id="tspan1628"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="151.56741"
-           x="53.338257"
-           sodipodi:role="line">nns1</tspan></text>
-      <g
-         id="g1615"
-         transform="translate(35.189585,14.816687)">
-        <rect
-           style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35711342;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-           id="rect4989-6"
-           width="36.271805"
-           height="8.2259636"
-           x="0.25264016"
-           y="139.82553" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-           x="18.779905"
-           y="145.64586"
-           id="text4522-6-5-3-75"><tspan
-             sodipodi:role="line"
-             x="18.779905"
-             y="145.64586"
-             style="font-size:4.93888903px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-             id="tspan1071-6-3">R1 Autonomy</tspan></text>
-      </g>
-    </g>
+         x="65.382561"
+         y="117.02414"
+         style="font-size:5.64059305px;text-align:start;text-anchor:start;stroke-width:0.26440275">Real Autonomy</tspan></text>
+    <rect
+       id="rect3713-5-7-8-9"
+       width="45.636963"
+       height="35.967735"
+       x="26.603458"
+       y="120.83881"
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.29493335;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="49.38332"
+       y="127.26018"
+       id="text4522-6-5-7-4"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="49.38332"
+         y="127.26018"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1619">Network</tspan><tspan
+         sodipodi:role="line"
+         x="49.38332"
+         y="134.31091"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1630">Namespace</tspan><tspan
+         sodipodi:role="line"
+         x="49.38332"
+         y="141.36166"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1628">nns1</tspan></text>
+    <rect
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35686973;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4989-6"
+       width="36.196602"
+       height="8.2318077"
+       x="31.45566"
+       y="144.63568" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="50.014122"
+       y="150.25073"
+       id="text4522-6-5-3-75"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="50.014122"
+         y="150.25073"
+         style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1071-6-3">R1 Autonomy</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot6565"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:18.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-style:normal;font-weight:normal;font-size:18.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.99792666,0,0,1.0007104,0.83954417,-0.05508505)"><flowRegion
          id="flowRegion6567"><rect
            id="rect6569"
            width="144"
@@ -1620,203 +1612,160 @@
          id="flowPara6571" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot7418"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:18.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+       style="font-style:normal;font-weight:normal;font-size:18.66666603px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.99792666,0,0,1.0007104,0.83954417,-0.05508505)"><flowRegion
          id="flowRegion7420"><rect
            id="rect7422"
            width="303"
            height="109"
            x="262"
            y="20" /></flowRegion><flowPara
-         id="flowPara7424" /></flowRoot>    <g
-       id="g2067-3"
-       transform="translate(-15.695856,69.222297)" />
-    <g
-       id="g1641-3"
-       transform="translate(71.172927,-10.318781)">
-      <rect
-         style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.29513475;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="130.86224"
-         x="30.579943"
-         height="35.942204"
-         width="45.731781"
-         id="rect3713-5-7-8-9-5" />
-      <text
-         id="text4522-6-5-7-4-62"
-         y="137.4563"
-         x="53.338257"
-         style="font-style:normal;font-weight:normal;font-size:5.64444447px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1619-9"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="137.4563"
-           x="53.338257"
-           sodipodi:role="line">Network</tspan><tspan
-           id="tspan1630-1"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="144.51186"
-           x="53.338257"
-           sodipodi:role="line">Namespace</tspan><tspan
-           id="tspan1628-2"
-           style="font-size:5.64444447px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="151.56741"
-           x="53.338257"
-           sodipodi:role="line">nns1</tspan></text>
-      <g
-         id="g1615-7"
-         transform="translate(35.189585,14.816687)">
-        <rect
-           style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35711342;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-           id="rect4989-6-0"
-           width="36.271805"
-           height="8.2259636"
-           x="0.25264016"
-           y="139.82553" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-           x="18.779905"
-           y="145.64586"
-           id="text4522-6-5-3-75-9"><tspan
-             sodipodi:role="line"
-             x="18.779905"
-             y="145.64586"
-             style="font-size:4.93888903px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-             id="tspan1071-6-3-3">R1 Autonomy</tspan></text>
-      </g>
-    </g>
+         id="flowPara7424" /></flowRoot>    <rect
+       id="rect3713-5-7-8-9-5"
+       width="45.636963"
+       height="35.967735"
+       x="102.38145"
+       y="120.57401"
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.29493335;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="125.26693"
+       y="126.99574"
+       id="text4522-6-5-7-4-62"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="125.26693"
+         y="126.99574"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1619-9">Network</tspan><tspan
+         sodipodi:role="line"
+         x="125.26693"
+         y="134.04648"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1630-1">Namespace</tspan><tspan
+         sodipodi:role="line"
+         x="125.26693"
+         y="141.09723"
+         style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1628-2">nns1</tspan></text>
+    <rect
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35686973;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4989-6-0"
+       width="36.196602"
+       height="8.2318077"
+       x="107.23364"
+       y="144.37088" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="125.89773"
+       y="149.9863"
+       id="text4522-6-5-3-75-9"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="125.89773"
+         y="149.9863"
+         style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1071-6-3-3">R1 Autonomy</tspan></text>
     <rect
        id="rect3713-5-7-6"
-       width="124.18598"
-       height="27.083908"
-       x="24.690344"
-       y="229.87111"
-       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.42218322;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       width="123.9285"
+       height="27.103149"
+       x="25.478697"
+       y="229.97932"
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.42189512;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="86.278969"
-       y="236.9308"
-       id="text4522-6-5-0"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="87.060806"
+       y="236.71411"
+       id="text4522-6-5-0"
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="86.278969"
-         y="236.9308"
-         style="font-size:5.64444494px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+         x="87.060806"
+         y="236.71411"
+         style="font-size:5.64059305px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-62">ns-3 Network Simulator</tspan></text>
-    <g
-       id="g4994-6"
-       transform="translate(29.368751,103.44327)">
-      <rect
-         y="140.61928"
-         x="4.7505569"
-         height="7.4322205"
-         width="29.128054"
-         id="rect4989-1"
-         style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35711342;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text4522-6-5-3-8"
-         y="146.17502"
-         x="18.779905"
-         style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1071-6-7"
-           style="font-size:4.93888903px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="146.17502"
-           x="18.779905"
-           sodipodi:role="line">R1 Wifi</tspan></text>
-    </g>
-    <g
-       transform="translate(104.51046,103.44328)"
-       id="g4994-7-9">
-      <rect
-         y="140.61928"
-         x="4.7505569"
-         height="7.4322205"
-         width="29.128054"
-         id="rect4989-5-2"
-         style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35711342;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         id="text4522-6-5-3-3-0"
-         y="146.17502"
-         x="18.779905"
-         style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1071-6-5-2"
-           style="font-size:4.93888903px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="146.17502"
-           x="18.779905"
-           sodipodi:role="line">R2 Wifi</tspan></text>
-    </g>
+    <rect
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35686973;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4989-1"
+       width="29.067661"
+       height="7.4375005"
+       x="34.888111"
+       y="244.18085" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
-       x="66.731339"
-       y="226.82231"
-       id="text7046-2-8-3"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="48.956512"
+       y="249.39293"
+       id="text4522-6-5-3-8"
+       transform="scale(0.99860815,1.0013938)"><tspan
          sodipodi:role="line"
-         x="66.731339"
-         y="226.82231"
-         style="font-size:5.64444494px;stroke-width:0.26458335"
+         x="48.956512"
+         y="249.39293"
+         style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1071-6-7">R1 Wifi</tspan></text>
+    <rect
+       style="fill:#ffd5d5;fill-opacity:1;stroke:#000000;stroke-width:0.35686973;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4989-5-2"
+       width="29.067661"
+       height="7.4375005"
+       x="109.87403"
+       y="244.18085" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="124.04694"
+       y="249.39294"
+       id="text4522-6-5-3-3-0"
+       transform="scale(0.99860815,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="124.04694"
+         y="249.39294"
+         style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
+         id="tspan1071-6-5-2">R2 Wifi</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440278"
+       x="67.526512"
+       y="226.61252"
+       id="text7046-2-8-3"
+       transform="scale(0.99860814,1.0013938)"><tspan
+         sodipodi:role="line"
+         x="67.526512"
+         y="226.61252"
+         style="font-size:5.64059305px;stroke-width:0.26440278"
          id="tspan7048-0-4-7">Simulated Wifi</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="96.789299"
-       y="101.1959"
-       id="text4522-6-5-7-4-3-3-5"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
+       x="97.563965"
+       y="101.07183"
+       id="text4522-6-5-7-4-3-3-5"
+       transform="scale(0.99860814,1.0013938)"><tspan
          id="tspan1575-5-9"
          sodipodi:role="line"
-         x="96.789299"
-         y="101.1959"
-         style="font-size:5.64444494px;text-align:start;text-anchor:start;stroke-width:0.26458332">Distributed Robot 2</tspan></text>
+         x="97.563965"
+         y="101.07183"
+         style="font-size:5.64059305px;text-align:start;text-anchor:start;stroke-width:0.26440275">Distributed Robot 2</tspan></text>
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24332519;stroke-miterlimit:4;stroke-dasharray:2.91990213, 2.91990213;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24315913;stroke-miterlimit:4;stroke-dasharray:2.9179095, 2.9179095;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1800"
-       width="40.491928"
-       height="170.40236"
-       x="28.569664"
-       y="104.11337" />
+       width="40.407974"
+       height="170.52342"
+       x="29.349974"
+       y="104.13225" />
     <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24332519;stroke-miterlimit:4;stroke-dasharray:2.91990215, 2.91990215;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24315913;stroke-miterlimit:4;stroke-dasharray:2.91790952, 2.91790952;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1800-2"
-       width="40.491928"
-       height="170.40236"
-       x="104.37279"
-       y="104.37798" />
-    <g
-       id="use10181"
-       style="fill:#000000;stroke:#000000"
-       transform="matrix(25.400001,0,0,25.400001,93.320396,7136.6219)">
-      <title
-         id="title1829">Departing Flights</title>
-      <g
-         id="g1833"
-         style="stroke:none">
-        <path
-           id="path1831"
-           d="M 0.58333333,0.11458333 0.4375,0.26041667 0.125,0.17708333 0.07291667,0.22916667 0.33333333,0.36458333 0.22916667,0.46875 0.14583333,0.45833333 0.10416667,0.5 0.19791667,0.55208333 0.25,0.64583333 0.29166667,0.60416667 0.28125,0.52083333 0.38541667,0.41666667 0.52083333,0.67708333 0.57291667,0.625 0.48958333,0.3125 0.63541667,0.16666667 a 0.036875,0.036875 0 0 0 -0.0520833,-0.0520833 z"
-           inkscape:connector-curvature="0"
-           style="stroke-width:0.01041667" />
-      </g>
-    </g>
-    <g
-       id="use10749"
-       style="fill:#000000;stroke:#000000"
-       transform="matrix(25.400001,0,0,25.400001,388.54284,7136.6219)">
-      <title
-         id="title1837">Departing Flights</title>
-      <g
-         id="g1841"
-         style="stroke:none">
-        <path
-           id="path1839"
-           d="M 0.58333333,0.11458333 0.4375,0.26041667 0.125,0.17708333 0.07291667,0.22916667 0.33333333,0.36458333 0.22916667,0.46875 0.14583333,0.45833333 0.10416667,0.5 0.19791667,0.55208333 0.25,0.64583333 0.29166667,0.60416667 0.28125,0.52083333 0.38541667,0.41666667 0.52083333,0.67708333 0.57291667,0.625 0.48958333,0.3125 0.63541667,0.16666667 a 0.036875,0.036875 0 0 0 -0.0520833,-0.0520833 z"
-           inkscape:connector-curvature="0"
-           style="stroke-width:0.01041667" />
-      </g>
-    </g>
+       width="40.407974"
+       height="170.52342"
+       x="104.99593"
+       y="104.39705" />
     <use
        id="use6600"
-       transform="matrix(25.400001,0,0,25.400001,37.979045,74.870935)"
+       transform="matrix(25.347338,0,0,25.418045,38.739846,74.869039)"
        style="fill:#000000;stroke:#000000"
        xlink:href="#DepartingFlights"
        x="0"
@@ -1825,7 +1774,7 @@
        height="100%" />
     <use
        id="use6600-2"
-       transform="matrix(25.400001,0,0,25.400001,114.17905,74.870935)"
+       transform="matrix(25.347338,0,0,25.418045,114.78186,74.869039)"
        style="fill:#000000;stroke:#000000"
        xlink:href="#DepartingFlights"
        x="0"
