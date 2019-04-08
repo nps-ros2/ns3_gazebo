@@ -1596,7 +1596,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="323.49388"
+     inkscape:cx="337.73061"
      inkscape:cy="393.62237"
      inkscape:document-units="in"
      inkscape:current-layer="layer1"
@@ -1655,18 +1655,18 @@
        width="123.9285"
        height="27.103149"
        x="25.478693"
-       y="177.82817"
+       y="178.88649"
        style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.42189512;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
        x="87.060799"
-       y="184.63553"
+       y="185.69238"
        id="text4522-6-5"
        transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
          x="87.060799"
-         y="184.63553"
+         y="185.69238"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071">Gazebo</tspan></text>
     <rect
@@ -1674,18 +1674,18 @@
        id="rect4989"
        width="29.067661"
        height="7.4375005"
-       x="34.888107"
-       y="192.02972" />
+       x="33.829773"
+       y="193.08804" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="48.956509"
-       y="197.31439"
+       x="47.896702"
+       y="198.37125"
        id="text4522-6-5-3"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="48.956509"
-         y="197.31439"
+         x="47.896702"
+         y="198.37125"
          style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-6">R1 Physics</tspan></text>
     <rect
@@ -1693,18 +1693,18 @@
        id="rect4989-5"
        width="29.067661"
        height="7.4375005"
-       x="109.87402"
-       y="192.02972" />
+       x="110.93236"
+       y="193.08804" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="124.04694"
-       y="197.31441"
+       x="125.10676"
+       y="198.37126"
        id="text4522-6-5-3-3"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="124.04694"
-         y="197.31441"
+         x="125.10676"
+         y="198.37126"
          style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-6-5">R2 Physics</tspan></text>
     <flowRoot
@@ -1721,25 +1721,25 @@
          id="flowPara5074" /></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="49.818565"
+       x="48.758759"
        y="101.07183"
        id="text4522-6-5-7-4-3-3"
        transform="scale(0.99860814,1.0013938)"><tspan
          id="tspan1575-5"
          sodipodi:role="line"
-         x="49.818565"
+         x="48.758759"
          y="101.07183"
          style="font-size:5.64059305px;text-align:center;text-anchor:middle;stroke-width:0.26440275">Distributed Robot 1</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440278"
        x="60.652035"
-       y="174.53394"
+       y="175.59079"
        id="text7046-2-8"
        transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
          x="60.652035"
-         y="174.53394"
+         y="175.59079"
          style="font-size:5.64059258px;stroke-width:0.26440278"
          id="tspan7048-0-4">Simulated Physics</tspan></text>
     <text
@@ -1758,29 +1758,29 @@
        id="rect3713-5-7-8-9"
        width="45.636963"
        height="35.967735"
-       x="26.603458"
-       y="120.83881"
+       x="25.545124"
+       y="120.30965"
        style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.29493335;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="49.38332"
-       y="127.26018"
+       x="48.323513"
+       y="126.73175"
        id="text4522-6-5-7-4"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="49.38332"
-         y="127.26018"
+         x="48.323513"
+         y="126.73175"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1619">Network</tspan><tspan
          sodipodi:role="line"
-         x="49.38332"
-         y="134.31091"
+         x="48.323513"
+         y="133.78249"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1630">Namespace</tspan><tspan
          sodipodi:role="line"
-         x="49.38332"
-         y="141.36166"
+         x="48.323513"
+         y="140.83324"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1628">nns1</tspan></text>
     <rect
@@ -1788,18 +1788,18 @@
        id="rect4989-6"
        width="36.196602"
        height="8.2318077"
-       x="31.45566"
-       y="144.63568" />
+       x="30.397326"
+       y="144.10652" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="50.014122"
-       y="150.25073"
+       x="48.954315"
+       y="149.72231"
        id="text4522-6-5-3-75"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="50.014122"
-         y="150.25073"
+         x="48.954315"
+         y="149.72231"
          style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-6-3">R1 Autonomy</tspan></text>
     <flowRoot
@@ -1828,29 +1828,29 @@
        id="rect3713-5-7-8-9-5"
        width="45.636963"
        height="35.967735"
-       x="102.38145"
-       y="120.57401"
+       x="103.43977"
+       y="120.04486"
        style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.29493335;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059258px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="125.26693"
-       y="126.99574"
+       x="126.32674"
+       y="126.46733"
        id="text4522-6-5-7-4-62"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="125.26693"
-         y="126.99574"
+         x="126.32674"
+         y="126.46733"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1619-9">Network</tspan><tspan
          sodipodi:role="line"
-         x="125.26693"
-         y="134.04648"
+         x="126.32674"
+         y="133.51807"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1630-1">Namespace</tspan><tspan
          sodipodi:role="line"
-         x="125.26693"
-         y="141.09723"
+         x="126.32674"
+         y="140.56882"
          style="font-size:5.64059258px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1628-2">nns1</tspan></text>
     <rect
@@ -1858,18 +1858,18 @@
        id="rect4989-6-0"
        width="36.196602"
        height="8.2318077"
-       x="107.23364"
-       y="144.37088" />
+       x="108.29198"
+       y="143.84172" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="125.89773"
-       y="149.9863"
+       x="126.95755"
+       y="149.45787"
        id="text4522-6-5-3-75-9"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="125.89773"
-         y="149.9863"
+         x="126.95755"
+         y="149.45787"
          style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-6-3-3">R1 Autonomy</tspan></text>
     <rect
@@ -1877,18 +1877,18 @@
        width="123.9285"
        height="27.103149"
        x="25.478697"
-       y="229.97932"
+       y="231.5668"
        style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.42189512;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
        x="87.060806"
-       y="236.71411"
+       y="238.29939"
        id="text4522-6-5-0"
        transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
          x="87.060806"
-         y="236.71411"
+         y="238.29939"
          style="font-size:5.64059305px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-62">ns-3 Network Simulator</tspan></text>
     <rect
@@ -1896,18 +1896,18 @@
        id="rect4989-1"
        width="29.067661"
        height="7.4375005"
-       x="34.888111"
-       y="244.18085" />
+       x="33.829777"
+       y="245.76833" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="48.956512"
-       y="249.39293"
+       x="47.896706"
+       y="250.97821"
        id="text4522-6-5-3-8"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="48.956512"
-         y="249.39293"
+         x="47.896706"
+         y="250.97821"
          style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-6-7">R1 Wifi</tspan></text>
     <rect
@@ -1915,42 +1915,42 @@
        id="rect4989-5-2"
        width="29.067661"
        height="7.4375005"
-       x="109.87403"
-       y="244.18085" />
+       x="110.93237"
+       y="245.76833" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="124.04694"
-       y="249.39294"
+       x="125.10676"
+       y="250.97823"
        id="text4522-6-5-3-3-0"
-       transform="scale(0.99860815,1.0013938)"><tspan
+       transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
-         x="124.04694"
-         y="249.39294"
+         x="125.10676"
+         y="250.97823"
          style="font-size:4.93551874px;text-align:center;text-anchor:middle;stroke-width:0.26440275"
          id="tspan1071-6-5-2">R2 Wifi</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440278"
        x="67.526512"
-       y="226.61252"
+       y="228.72623"
        id="text7046-2-8-3"
        transform="scale(0.99860814,1.0013938)"><tspan
          sodipodi:role="line"
          x="67.526512"
-         y="226.61252"
+         y="228.72623"
          style="font-size:5.64059305px;stroke-width:0.26440278"
          id="tspan7048-0-4-7">Simulated Wifi</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:5.64059305px;line-height:1.25;font-family:sans-serif;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26440275"
-       x="97.563965"
+       x="98.623779"
        y="101.07183"
        id="text4522-6-5-7-4-3-3-5"
        transform="scale(0.99860814,1.0013938)"><tspan
          id="tspan1575-5-9"
          sodipodi:role="line"
-         x="97.563965"
+         x="98.623779"
          y="101.07183"
          style="font-size:5.64059305px;text-align:start;text-anchor:start;stroke-width:0.26440275">Distributed Robot 2</tspan></text>
     <rect
@@ -1958,18 +1958,18 @@
        id="rect1800"
        width="40.407974"
        height="170.52342"
-       x="29.349974"
+       x="28.291639"
        y="104.13225" />
     <rect
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.24315913;stroke-miterlimit:4;stroke-dasharray:2.91790952, 2.91790952;stroke-dashoffset:0;stroke-opacity:1"
        id="rect1800-2"
        width="40.407974"
        height="170.52342"
-       x="104.99593"
+       x="106.05427"
        y="104.39705" />
     <use
        id="use6600"
-       transform="matrix(25.347338,0,0,25.418045,38.739846,74.869039)"
+       transform="matrix(25.347338,0,0,25.418045,37.681512,74.869039)"
        style="fill:#000000;stroke:#000000"
        xlink:href="#DepartingFlights"
        x="0"
@@ -1978,7 +1978,7 @@
        height="100%" />
     <use
        id="use6600-2"
-       transform="matrix(25.347338,0,0,25.418045,114.78186,74.869039)"
+       transform="matrix(25.347338,0,0,25.418045,115.8402,74.869039)"
        style="fill:#000000;stroke:#000000"
        xlink:href="#DepartingFlights"
        x="0"
@@ -1986,40 +1986,40 @@
        width="100%"
        height="100%" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.50800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:url(#marker11385);marker-end:url(#marker12059)"
-       d="m 31.485417,148.56873 c -33.8666671,46.83125 3.175001,98.68959 3.175001,98.68959"
+       style="fill:none;stroke:#000000;stroke-width:0.50800002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker11385);marker-end:url(#marker12059)"
+       d="m 29.897916,149.0979 c -33.8666662,46.83125 3.175001,98.68959 3.175001,98.68959"
        id="path5538"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.50800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:url(#marker9531);marker-end:url(#marker10145)"
-       d="m 142.875,147.77498 c 28.83959,45.24375 -4.23333,100.27709 -4.23333,100.27709"
+       style="fill:none;stroke:#000000;stroke-width:0.50800002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker9531);marker-end:url(#marker10145)"
+       d="m 144.99168,148.30415 c 28.83959,45.24375 -4.23333,100.27709 -4.23333,100.27709"
        id="path5540"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.50800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
-       d="m 49.212501,153.06664 0.264584,38.89376"
+       style="fill:none;stroke:#000000;stroke-width:0.50800002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 48.154167,153.06664 0.264584,38.89376"
        id="path5542"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.50800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:url(#marker8911);marker-end:url(#marker8285)"
-       d="m 124.88334,152.53748 c 0.26458,39.15834 0.26458,39.15834 0.26458,39.15834"
+       style="fill:none;stroke:#000000;stroke-width:0.50800002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker8911);marker-end:url(#marker8285)"
+       d="m 125.94168,153.06665 c 0.26458,39.15834 0.26458,39.15834 0.26458,39.15834"
        id="path5544"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.50800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker14015);marker-end:url(#marker14683);stroke-miterlimit:4;stroke-dasharray:none"
-       d="m 63.764585,247.78748 c 21.695834,11.90625 46.037505,0 46.037505,0"
+       style="fill:none;stroke:#000000;stroke-width:0.50800002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#marker14015);marker-end:url(#marker14683)"
+       d="m 63.764585,250.43333 c 21.695834,11.90625 46.037505,0 46.037505,0"
        id="path5548"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.50800001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-start:;marker-end:url(#marker13341)"
-       d="m 87.047919,205.18957 0.264583,24.60625"
+       style="fill:none;stroke:#000000;stroke-width:0.50800002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13341)"
+       d="m 85.989585,206.24791 0.264583,24.60625"
        id="path5550"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <g
        id="g15402"
-       transform="translate(0,-3.7041669)">
+       transform="translate(-2.1166668,-2.6458335)">
       <ellipse
          ry="3.8554313"
          rx="3.8554311"
@@ -2041,7 +2041,7 @@
     </g>
     <g
        id="g15346-3"
-       transform="translate(75.538544,97.234382)">
+       transform="translate(76.067711,99.35105)">
       <ellipse
          ry="3.8554313"
          rx="3.8554311"
@@ -2063,7 +2063,7 @@
     </g>
     <g
        id="g15346-35"
-       transform="translate(149.62188,41.142714)">
+       transform="translate(152.26773,42.201048)">
       <ellipse
          ry="3.8554313"
          rx="3.8554311"
@@ -2085,7 +2085,7 @@
     </g>
     <g
        id="g15346-35-2"
-       transform="translate(44.317711,14.684381)">
+       transform="translate(43.788544,14.684381)">
       <ellipse
          ry="3.8554313"
          rx="3.8554311"
@@ -2107,7 +2107,7 @@
     </g>
     <g
        id="g15346-35-3"
-       transform="translate(119.72396,14.684381)">
+       transform="translate(121.31147,14.684381)">
       <ellipse
          ry="3.8554313"
          rx="3.8554311"
@@ -2129,7 +2129,7 @@
     </g>
     <g
        id="g15346-35-6"
-       transform="translate(81.888544,64.690632)">
+       transform="translate(81.359377,65.748966)">
       <ellipse
          ry="3.8554313"
          rx="3.8554311"
