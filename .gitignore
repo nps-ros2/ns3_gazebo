@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Colcon
+ns3_gazebo_ws/install/
+ns3_gazebo_ws/log/
+
 # Distribution / packaging
 .Python
 build/
