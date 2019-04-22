@@ -141,7 +141,7 @@ if __name__=="__main__":
                         help="The number of network namespaces to set up for.")
     args = parser.parse_args()
 
-    print("Providing '%s' services for %d network namespaces."%(
+    print("Providing '%s' services for %d network namespaces..."%(
                                              args.command, args.count))
 
     if args.command == "setup":
@@ -157,6 +157,9 @@ if __name__=="__main__":
     else:
         print("Invalid command: %s"%args.command)
         sys.exit(1)
+
+    print("Done providing '%s' services for %d network namespaces."%(
+                                             args.command, args.count))
 
     # startup
     # sudo ip netns exec nns1 /bin/bash
