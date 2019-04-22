@@ -12,7 +12,7 @@ Please perform the following steps:
 
 2. Place this script into a directory.
 
-3. Run this script by typing "source <script name>".
+3. Run this script by typing "./<script name>".
 
 Press enter to continue...
 EOF
