@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>diff_drive_ns3</name>
+  <name>diff_drive_ns3_ros2</name>
   <version>0.0.0</version>
   <description>ROS2 diff drive nav_msgs and ns-3 driver</description>
   <maintainer email="bdallen@nps.edu">Bruce Allen</maintainer>
