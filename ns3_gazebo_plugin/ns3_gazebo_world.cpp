@@ -7,16 +7,17 @@
 #include <ignition/math/Pose3.hh>
 
 #include "ns3/core-module.h"
+#include "ns3/node-container.h"
 #include "ns3_setup.hpp"
 
-static ns3_thread_function() {
+namespace ns3_gazebo_world {
+
+static void ns3_thread_function(void) {
   std::cout << "Starting ns-3 Wifi simulator in thread.\n";
   ns3::Simulator::Run();
   ns3::Simulator::Destroy();
   std::cout << "Ending ns-3 Wifi simulator in thread.\n";
-  return 0;
-
-namespace ns3_gazebo_world {
+}
 
 class NS3GazeboWorld : public gazebo::WorldPlugin {
   private:
@@ -28,13 +29,13 @@ class NS3GazeboWorld : public gazebo::WorldPlugin {
 
   public:
   NS3GazeboWorld() : gazebo::WorldPlugin(), 
-                     ns3_nodes(), ns3_thread(0),
+                     ns3_nodes(), ns3_thread(),
                      model_ptr(0), update_connection(0) {
     printf("Hello World!\n");
   }
 
   ~NS3GazeboWorld() {
-    if (ns3_thread != void) {
+    if (&ns3_thread != NULL) {
       ns3_thread.join(); // gracefully let the robot thread stop
       std::cout << "Stopped ns-3 Wifi simulator in main.\n";
     }
@@ -67,7 +68,7 @@ class NS3GazeboWorld : public gazebo::WorldPlugin {
 //    ns3::NodeContainer ns3_nodes;
 
     // set up ns-3
-    set_up_ns3(ns3_nodes);
+    ns3_setup(ns3_nodes);
 
     // set to run for one year
     ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.));
