@@ -251,7 +251,7 @@
 
     </model>
 
-    <plugin name="hello_world" filename="libdiff_drive_ns3_gazebo.so"/>
+    <plugin name="diff_drive_ns3_gazebo_world" filename="build/libdiff_drive_ns3_gazebo.so"/>
 
   </world>
 </sdf>

@@ -7,7 +7,7 @@ link_directories(${GAZEBO_LIBRARY_DIRS})
 link_directories(~/repos/ns-3-allinone/ns-3.29/build/lib)
 list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 
-add_library(diff_drive_ns3_gazebo SHARED ns3_gazebo_world.cpp ns3_setup.cpp)
+add_library(diff_drive_ns3_gazebo SHARED ns3_gazebo_world.cpp)
 target_link_libraries(diff_drive_ns3_gazebo ${GAZEBO_LIBRARIES}
   ns3.29-core-debug
   ns3.29-network-debug
