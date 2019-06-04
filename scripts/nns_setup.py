@@ -133,12 +133,14 @@ def do_teardown_nns(i):
 
 
 if __name__=="__main__":
+    DEFAULT_COUNT=5
     parser = ArgumentParser(prog='lxc_setup.py',
                             description="Manage containers used with ns-3.")
     parser.add_argument("command", type=str, help="The command to execute.",
                         choices=["setup", "teardown"])
-    parser.add_argument("-c", "--count", type=int, default=5,
-                        help="The number of network namespaces to set up for.")
+    parser.add_argument("-c", "--count", type=int, default=DEFAULT_COUNT,
+                        help="The number of network namespaces to set up for, "
+                             "default %d."%DEFAULT_COUNT)
     parser.add_argument("-s", "--suppress_direct", action="store_true",
                         help="Suppress direct connection setup")
     args = parser.parse_args()
