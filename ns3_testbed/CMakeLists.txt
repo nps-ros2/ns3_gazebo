@@ -14,13 +14,3 @@ target_link_libraries(ns3_mobility
   ns3.29-tap-bridge-debug
 )
 
-add_executable(ns3_test ns3_test.cpp)
-target_link_libraries(ns3_test
-  ns3.29-core-debug
-  ns3.29-network-debug
-  ns3.29-internet-debug
-  ns3.29-wifi-debug
-  ns3.29-mobility-debug
-  ns3.29-tap-bridge-debug
-)
-

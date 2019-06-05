@@ -54,24 +54,17 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
 //  mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
 // https://www.nsnam.org/docs/release/3.7/doxygen/classns3_1_1_random_walk2d_mobility_model.html
 
-  // old way
-  mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-
-/*
-  // new way
   mobility.SetMobilityModel(
           "ns3::RandomWalk2dMobilityModel", // model
-//          "Bounds", ns3::RectangleValue(ns3::Rectangle(0,200,0,200)), //xxyy
-          "Bounds", ns3::RectangleValue(ns3::Rectangle(0,20,0,20)), //xxyy
+          "Bounds", ns3::RectangleValue(ns3::Rectangle(-1.0,20.0,-1.0,20.0)),
           "Time", ns3::StringValue("2s"), // change after Time
-          "Distance", ns3::StringValue("4"), // change after Distance
+          "Distance", ns3::StringValue("4.0"), // change after Distance
           "Mode", ns3::StringValue("Time"),   // use change after Time
           "Direction", ns3::StringValue(
                        "ns3::UniformRandomVariable[Min=0.0|Max=6.28318]"),
           "Speed", ns3::StringValue(
                        "ns3::UniformRandomVariable[Min=2.0|Max=10.0]")
   );
-*/
 
   mobility.Install(ns3_nodes);
 
@@ -88,16 +81,14 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
 
 void interval_function(const ns3::NodeContainer& ns3_nodes) {
   // schedule next interval
-  ns3::Simulator::Schedule(ns3::Seconds(0.5), &interval_function, ns3_nodes);
+  ns3::Simulator::Schedule(ns3::Seconds(0.1), &interval_function, ns3_nodes);
 
   // show x,y,z positions rounded with 1 decimal point
   std::cout << std::fixed << std::setprecision(1);
   for (int i=0; i<COUNT; i++) {
     ns3::Ptr<ns3::Node> node = ns3_nodes.Get(i);
-//    ns3::Ptr<ns3::RandomWalk2dMobilityModel> mobility_model =
-//                         node->GetObject<ns3::RandomWalk2dMobilityModel>();
-    ns3::Ptr<ns3::ConstantPositionMobilityModel> mobility_model =
-                         node->GetObject<ns3::ConstantPositionMobilityModel>();
+    ns3::Ptr<ns3::RandomWalk2dMobilityModel> mobility_model =
+                     node->GetObject<ns3::RandomWalk2dMobilityModel>();
     auto vector = mobility_model->GetPosition();
     std::cout << vector.x << "  " << vector.y << "  " << vector.z << "      ";
   }
