@@ -3,15 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# colcon / cmake
+install/
+log/
+
 # vi
 *.swp
 
 # C extensions
 *.so
-
-# Colcon
-ns3_gazebo_ws/install/
-ns3_gazebo_ws/log/
 
 # Distribution / packaging
 .Python

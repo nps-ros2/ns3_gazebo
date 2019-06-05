@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>ns3_testbed_nodes</name>
+  <version>0.6.2</version>
+  <description>
+    ROS2 nodes for the ns-3 testbed.
+  </description>
+  <maintainer email="you@yours.com">your name</maintainer>
+  <license>your licnese</license>
+
+  <author>your name</author>
+  <author email="you@yours.com">your name</author>
+
+  <exec_depend>zzzzzzzzzzzzzzzzzzexample_interfaces</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
