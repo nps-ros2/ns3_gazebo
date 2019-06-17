@@ -12,6 +12,46 @@
 
 static const int COUNT=5;
 
+// set mobility for ground station and robot nodes
+//https://www.nsnam.org/doxygen/mobility-trace-example_8cc_source.html
+//  mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+// https://www.nsnam.org/docs/release/3.7/doxygen/classns3_1_1_random_walk2d_mobility_model.html
+void set_mobility(ns3::NodeContainer& ns3_nodes) {
+
+  // all antenna locations start deterministically at 0, 0, 0
+  ns3::Ptr<ns3::ListPositionAllocator>positionAlloc =
+                         ns3::CreateObject<ns3::ListPositionAllocator>();
+  for (int i=0; i<COUNT; i++) {
+    positionAlloc->Add(ns3::Vector(0.0, 0.0, 0.0));
+  }
+
+  // ground station
+  ns3::MobilityHelper gs_mobility;
+  gs_mobility.SetPositionAllocator(positionAlloc);
+  gs_mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+
+  // robots
+  ns3::MobilityHelper r_mobility;
+  r_mobility.SetPositionAllocator(positionAlloc);
+  r_mobility.SetMobilityModel(
+          "ns3::RandomWalk2dMobilityModel", // model
+          "Bounds", ns3::RectangleValue(ns3::Rectangle(-1.0,20.0,-1.0,20.0)),
+          "Time", ns3::StringValue("2s"), // change after Time
+          "Distance", ns3::StringValue("4.0"), // change after Distance
+          "Mode", ns3::StringValue("Time"),   // use change after Time
+          "Direction", ns3::StringValue(
+                       "ns3::UniformRandomVariable[Min=0.0|Max=6.28318]"),
+          "Speed", ns3::StringValue(
+                       "ns3::UniformRandomVariable[Min=2.0|Max=10.0]")
+  );
+
+  // apply mobility to GS and robots
+  gs_mobility.Install(ns3_nodes.Get(0));
+  for (int i=1; i<COUNT; i++) {
+    r_mobility.Install(ns3_nodes.Get(i));
+  }
+}
+
 // desired approach
 void ns3_setup(ns3::NodeContainer& ns3_nodes) {
 
@@ -38,35 +78,11 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
   ns3::YansWifiPhyHelper wifiPhy(ns3::YansWifiPhyHelper::Default());
   wifiPhy.SetChannel(wifiChannel.Create());
 
-  // Install the wireless devices onto our ghost ns3_nodes.
+  // install the wireless devices onto our ghost ns3_nodes.
   ns3::NetDeviceContainer devices = wifi.Install(wifiPhy, wifiMac, ns3_nodes);
 
-  // antenna locations start deterministically
-  ns3::Ptr<ns3::ListPositionAllocator>positionAlloc =
-                         ns3::CreateObject<ns3::ListPositionAllocator>();
-  for (int i=0; i<COUNT; i++) {
-    positionAlloc->Add(ns3::Vector(0.0, 0.0, 0.0));
-  }
-  ns3::MobilityHelper mobility;
-  mobility.SetPositionAllocator(positionAlloc);
-
-//https://www.nsnam.org/doxygen/mobility-trace-example_8cc_source.html
-//  mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-// https://www.nsnam.org/docs/release/3.7/doxygen/classns3_1_1_random_walk2d_mobility_model.html
-
-  mobility.SetMobilityModel(
-          "ns3::RandomWalk2dMobilityModel", // model
-          "Bounds", ns3::RectangleValue(ns3::Rectangle(-1.0,20.0,-1.0,20.0)),
-          "Time", ns3::StringValue("2s"), // change after Time
-          "Distance", ns3::StringValue("4.0"), // change after Distance
-          "Mode", ns3::StringValue("Time"),   // use change after Time
-          "Direction", ns3::StringValue(
-                       "ns3::UniformRandomVariable[Min=0.0|Max=6.28318]"),
-          "Speed", ns3::StringValue(
-                       "ns3::UniformRandomVariable[Min=2.0|Max=10.0]")
-  );
-
-  mobility.Install(ns3_nodes);
+  // install mobility
+  set_mobility(ns3_nodes);
 
   // connect Wifi through TapBridge devices
   ns3::TapBridgeHelper tapBridge;
@@ -80,12 +96,22 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
 }
 
 void interval_function(const ns3::NodeContainer& ns3_nodes) {
+
   // schedule next interval
   ns3::Simulator::Schedule(ns3::Seconds(0.1), &interval_function, ns3_nodes);
 
-  // show x,y,z positions rounded with 1 decimal point
+  // round to 1 decimal point
   std::cout << std::fixed << std::setprecision(1);
-  for (int i=0; i<COUNT; i++) {
+
+  // show GS x,y,z position
+  ns3::Ptr<ns3::Node> node = ns3_nodes.Get(0);
+  ns3::Ptr<ns3::ConstantPositionMobilityModel> mobility_model =
+                   node->GetObject<ns3::ConstantPositionMobilityModel>();
+  auto vector = mobility_model->GetPosition();
+  std::cout << vector.x << "  " << vector.y << "  " << vector.z << "      ";
+
+  // show robot x,y,z positions
+  for (int i=1; i<COUNT; i++) {
     ns3::Ptr<ns3::Node> node = ns3_nodes.Get(i);
     ns3::Ptr<ns3::RandomWalk2dMobilityModel> mobility_model =
                      node->GetObject<ns3::RandomWalk2dMobilityModel>();
@@ -107,14 +133,16 @@ int main(int argc, char *argv[]) {
   ns3::NodeContainer ns3_nodes;
   ns3_setup(ns3_nodes);
 
-  // interval function
-  interval_function(ns3_nodes);
-
-  // set to run for one year
-//  ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.));
-  ns3::Simulator::Stop(ns3::Seconds(6.0));
+  // set to run for a while
+//  ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.)); // 1 year
+  ns3::Simulator::Stop(ns3::Seconds(6.0)); // 6 seconds
 
   std::cout << "Starting ns-3 Wifi simulator.\n";
+
+  // start interval function
+  interval_function(ns3_nodes);
+
+  // run
   ns3::Simulator::Run();
   ns3::Simulator::Destroy();
   std::cout << "Ending ns-3 Wifi simulator.\n";
