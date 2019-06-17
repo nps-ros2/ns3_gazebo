@@ -33,9 +33,10 @@ void set_mobility(ns3::NodeContainer& ns3_nodes) {
   // robots
   ns3::MobilityHelper r_mobility;
   r_mobility.SetPositionAllocator(positionAlloc);
+  float y=30.0; // box size
   r_mobility.SetMobilityModel(
           "ns3::RandomWalk2dMobilityModel", // model
-          "Bounds", ns3::RectangleValue(ns3::Rectangle(-1.0,20.0,-1.0,20.0)),
+          "Bounds", ns3::RectangleValue(ns3::Rectangle(-1.0,y,-1.0,y)),
           "Time", ns3::StringValue("2s"), // change after Time
           "Distance", ns3::StringValue("4.0"), // change after Distance
           "Mode", ns3::StringValue("Time"),   // use change after Time
@@ -76,6 +77,9 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
   // physical layer
   ns3::YansWifiChannelHelper wifiChannel(ns3::YansWifiChannelHelper::Default());
   ns3::YansWifiPhyHelper wifiPhy(ns3::YansWifiPhyHelper::Default());
+  float p=16.0206; // default
+  wifiPhy.Set("TxPowerStart", ns3::DoubleValue(p));
+  wifiPhy.Set("TxPowerEnd", ns3::DoubleValue(p));
   wifiPhy.SetChannel(wifiChannel.Create());
 
   // install the wireless devices onto our ghost ns3_nodes.
