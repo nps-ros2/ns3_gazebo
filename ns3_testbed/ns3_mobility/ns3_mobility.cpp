@@ -134,8 +134,8 @@ int main(int argc, char *argv[]) {
   ns3_setup(ns3_nodes);
 
   // set to run for a while
-//  ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.)); // 1 year
-  ns3::Simulator::Stop(ns3::Seconds(6.0)); // 6 seconds
+  ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.)); // 1 year
+//  ns3::Simulator::Stop(ns3::Seconds(6.0)); // 6 seconds
 
   std::cout << "Starting ns-3 Wifi simulator.\n";
 
