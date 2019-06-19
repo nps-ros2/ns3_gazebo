@@ -12,6 +12,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
+#    py_modules=['ns3_testbed_nodes.set_nns'],
     install_requires=['setuptools'],
     zip_safe=True,
     author='your name',
