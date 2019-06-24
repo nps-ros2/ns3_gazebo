@@ -1,77 +1,58 @@
 #!/usr/bin/env python3
-# inspired by https://eli.thegreenplace.net/2017/interacting-with-a-long-running-child-process-in-python/
+# Adapted from https://github.com/larsks/python-netns/blob/master/netns.py
+import os
+import time, subprocess, threading, time
+from ctypes import CDLL, get_errno
 
-from argparse import ArgumentParser
-import subprocess
-import threading
-import time
+CLONE_NEWNET = 0x40000000
 
-def output_handler(proc, proc_id):
+def errcheck(ret, func, args):
+    if ret == -1:
+        e = get_errno()
+        raise OSError(e, os.strerror(e))
+
+libc = CDLL('libc.so.6', use_errno=True)
+libc.setns.errcheck=errcheck
+
+"""Set NNS or raise ValueError.  See libc.setns."""
+def set_nns(nns_name):
+    print("set_nns %s..."%nns_name)
+    nnspath = "/var/run/netns/%s"%nns_name
+    if not os.path.exists(nnspath):
+        error = "Error: NNS %s is not defined.  " \
+                "Please run the setup script."%nnspath
+        print(error)
+        raise ValueError(error)
+    with open(nnspath) as fd:
+        if hasattr(fd, 'fileno'):
+            print("hasattr fileno.")
+            fd = fd.fileno()
+        status = libc.setns(fd, CLONE_NEWNET)
+        if status:
+            error = "Error: failure with %s"%nnspath
+            print(error)
+            raise ValueError(error)
+        else:
+            print("set_nns %s Done."%nns_name)
+
+def output_handler(proc, name):
     for line in iter(proc.stdout.readline, b''):
-        print("%s: %s"%(proc_id, line.decode('utf-8')))
+        print("%s: %s"%(name, line.decode('utf-8')))
 
-def start_all(num_robots):
+def nns_start(name, nns, cmd):
+    set_nns(nns)
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    t = threading.Thread(target=output_handler, args=(p, name))
+    t.start()
 
-    # run .bashrc since sudo loses environment setup
-    subprocess.run(["source","~/.bashrc"])
-#    # start ns3
-#    p_ns3 = subprocess.Popen(["ns3_mobility/build/ns3_mobility"],
-#                           stdout=subprocess.PIPE,
-#                           stderr=subprocess.STDOUT)
-#
-#    t_ns3 = threading.Thread(target=output_handler, args=(p_ns3, "ns3"))
-#    t_ns3.start()
-
-    # start GS
-    p_gs = subprocess.Popen(["ros2","run","ns3_testbed_nodes","gs","-n"],
-                          stdout=subprocess.PIPE,
-                          stderr=subprocess.STDOUT)
-
-    t_gs = threading.Thread(target=output_handler, args=(p_gs, "GS"))
-    t_gs.start()
-
-    # start robots
-    for i in range(num_robots):
-
-        p_r = subprocess.Popen(["ros2","run","ns3_testbed_nodes",
-                                "r","-n", "%d"%i],
-                          stdout=subprocess.PIPE,
-                          stderr=subprocess.STDOUT)
-
-        t_r = threading.Thread(target=output_handler, args=(p_r, "R%d"%i))
-        t_r.start()
-
-
-#    # end relatively gracefully
-#    try:
-#        time.sleep(20)
-#    except KeyboardInterrupt:
-#        print("zz Keyboard interrupt")
-#    finally:
-#        pass
-##        p_ns3.terminate()
-
-    # start GS in nns1
-    print("zz: %d"%num_robots)
-
-
-# main
-if __name__=="__main__":
-    parser = ArgumentParser(description="Launch ns3, GS, and <n> robots.")
-    parser.add_argument("num_robots", type=int, nargs="?", default=1,
-                        help="The number of robots to launch, "
-                             "in addition to the Ground Station.")
-    args = parser.parse_args()
-
-    start_all(args.num_robots)
-
-#    # create the "application" and the main window
-#    application = QApplication(sys.argv)
-#    main_window = QMainWindow()
-#
-#    gui_manager = GUIManager(main_window)
-
-#    # start the GUI
-#    gui_manager.w.show()
-#    sys.exit(application.exec_())
+if __name__ == '__main__':
+#    print("start ip...")
+#    nns_start("ip_a", "nns3", ["ip", "a"])
+    print("start GS...")
+    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "gs"])
+    print("start R1...")
+    nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "r","1"])
+    print("Running...")
+    time.sleep(10)
+    print("Ending...")
 

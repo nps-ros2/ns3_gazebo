@@ -3,7 +3,6 @@ from argparse import ArgumentParser
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-from ns3_testbed_nodes.set_nns import set_nns
 
 class GS(Node):
 
@@ -21,12 +20,7 @@ class GS(Node):
 
 def main(args=None):
     parser = ArgumentParser(description="Testbed ground station (GS).")
-    parser.add_argument("-n", "--use_nns", action="store_true",
-                        help="Run in its own Network Namespace")
     args = parser.parse_args()
-
-    if args.use_nns:
-        set_nns("nns1")
 
     rclpy.init()
 
