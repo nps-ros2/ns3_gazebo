@@ -3,9 +3,11 @@ from argparse import ArgumentParser
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+from ns3_testbed_nodes.testbed_codec import testbed_encode
 
 #IMAGE_LENGTH=640*480*1
 IMAGE_LENGTH=5
+ODOMETRY_LENGTH=150
 
 class R(Node):
 
@@ -24,25 +26,24 @@ class R(Node):
                                                  self.image_timer_callback)
 
     def odometry_timer_callback(self):
-        print("odometry_timer_callback")
+#        print("odometry_timer_callback")
         self.odometry_message_number += 1
         msg = String()
-        msg.data = 'r%d Odometry value %d'%(
-                        self.robot_number, self.odometry_message_number)
-        self.get_logger().info('Publishing odometry %d'%
+        msg.data = testbed_encode("R%d"%self.robot_number, "odometry", 
+                         self.odometry_message_number, ODOMETRY_LENGTH)
+
+        self.get_logger().info('Publishing odometry message number %d'%
                                self.odometry_message_number)
-        print('Publishing odometry %d'% self.odometry_message_number)
+#        print('Publishing odometry %d'% self.odometry_message_number)
         self.odometry_publisher.publish(msg)
 
     def image_timer_callback(self):
         self.image_message_number += 1
-        image_data = "%s %s"%(self.image_message_number, "a"*IMAGE_LENGTH)
         msg = String()
-        msg.data = 'r%d Image %d value %s'%(self.robot_number,
-                                            self.image_message_number,
-                                            "a"*IMAGE_LENGTH)
-        self.get_logger().info('Publishing image message %d size %d'%(
-                               self.image_message_number, len(msg.data)))
+        msg.data = testbed_encode("R%d"%self.robot_number, "image",
+                         self.image_message_number, IMAGE_LENGTH)
+#        self.get_logger().info('Publishing image message number %d size %d'%(
+#                               self.image_message_number, len(msg.data)))
         self.image_publisher.publish(msg)
 
 def main():

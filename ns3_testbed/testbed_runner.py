@@ -46,13 +46,9 @@ def nns_start(name, nns, cmd):
     t.start()
 
 if __name__ == '__main__':
-#    print("start ip...")
-#    nns_start("ip_a", "nns3", ["ip", "a"])
     print("start GS...")
     nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "gs"])
     print("start R1...")
     nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "r","1"])
     print("Running...")
-    time.sleep(10)
-    print("Ending...")
 
