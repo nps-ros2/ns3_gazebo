@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QTableView
 from PyQt5.QtCore import Qt, pyqtSlot, QAbstractTableModel, QTimer, QVariant, \
                          QModelIndex
 from pipe_logger import PipeReader
+from testbed_codec import testbed_decode
 
 class NetworkDataTableModel(QAbstractTableModel):
 
@@ -11,8 +12,8 @@ class NetworkDataTableModel(QAbstractTableModel):
         self.network_data = dict()
         self.sorted_keys = list()
 
-        # fake data
-        self.set_data({("a","b"):(3,4,5)})
+#        # fake data
+#        self.set_data({("a","b"):(3,4,5)})
 
         # queue from pipe reader
         self.pipe_reader = PipeReader()
@@ -33,8 +34,8 @@ class NetworkDataTableModel(QAbstractTableModel):
         queue = self.pipe_reader.queue
         new_network_data = dict()
         while not queue.empty():
-            parts = queue.get()
-            key = "%s  %s"%(parts[0],parts[1])
+            parts = testbed_decode(queue.get())
+            key = (parts[0],parts[1])
             value = parts[2:]
             new_network_data[key]=value
         self.set_data(new_network_data)
@@ -54,7 +55,8 @@ class NetworkDataTableModel(QAbstractTableModel):
 
         self.endResetModel()
 
-        self.sorted_keys = sorted(self.network_data.keys())
+#        self.sorted_keys = sorted(self.network_data.keys())
+        self.sorted_keys = list(self.network_data.keys())
 
     def rowCount(self, parent=QModelIndex()):
         return len(self.network_data)
@@ -65,13 +67,17 @@ class NetworkDataTableModel(QAbstractTableModel):
     def data(self, index, role=Qt.DisplayRole):
         if role == Qt.DisplayRole:
             row = index.row()
+#            print("data row: %d, of %d"%(row, len(self.sorted_keys)))
             column = index.column()
             key = self.sorted_keys[row]
             if column < 2:
                 return key[column]
             else:
                 value = self.network_data[key]
-            return "%.2f"%value[column-2]
+#                print("data: %s %s %s"%(row, column, self.network_data[key]))
+#                print(type(value[column-2]))
+#            return "%.2f"%value[column-2]
+            return value[column-2]
         else:
             return QVariant()
 

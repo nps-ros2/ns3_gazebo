@@ -54,7 +54,8 @@ if __name__ == '__main__':
     nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "r","1"])
     print("Running...")
 
-    reader = PipeReader()
-    while True:
-        print("Queue: %s"%reader.queue.get())
+# no, use GUI
+#    reader = PipeReader()
+#    while True:
+#        print("Queue: %s"%reader.queue.get())
 

@@ -36,7 +36,12 @@ def _pipe_consumer_thread(queue):
         while True:
             line = f.readline()
 #            print("read then enqueue line: %s"%line)
-            queue.put(line)
+            try:
+                queue.put(line)
+            except queue.full:
+                print("pipe_logger queue full.  "
+                      "Dropping line '%s'"%line)
+               
 class PipeReader():
     def __init__(self):
         _maybe_make_pipe()

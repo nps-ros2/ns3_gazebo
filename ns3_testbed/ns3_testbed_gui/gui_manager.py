@@ -24,7 +24,7 @@ class GUIManager(QObject):
         # main window decoration
         self.w.setGeometry(0,0,800,600)
         self.w.setWindowTitle("Testbed GUI Version %s"%VERSION)
-        self.w.setWindowIcon(QIcon('icons/tools-whale.png'))
+        self.w.setWindowIcon(QIcon('icons/animals-whale.png'))
 
         # the network data table model
         self.network_data_table_model = NetworkDataTableModel(COLUMNS)
