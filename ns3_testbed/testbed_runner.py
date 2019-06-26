@@ -4,6 +4,8 @@ import os
 import time, subprocess, threading, time
 from ctypes import CDLL, get_errno
 
+from pipe_logger import PipeReader
+
 CLONE_NEWNET = 0x40000000
 
 def errcheck(ret, func, args):
@@ -47,8 +49,12 @@ def nns_start(name, nns, cmd):
 
 if __name__ == '__main__':
     print("start GS...")
-    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "gs"])
+    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "gs", "-p"])
     print("start R1...")
     nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "r","1"])
     print("Running...")
+
+    reader = PipeReader()
+    while True:
+        print("Queue: %s"%reader.queue.get())
 
