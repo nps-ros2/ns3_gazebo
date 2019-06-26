@@ -16,3 +16,5 @@ def testbed_decode(msg):
     dt = t1 - float(parts[3])
     return parts[0], parts[1], int(parts[2]), len(msg), dt
 
+COLUMNS = ["Source", "Subscription", "Index", "Size", "Latency"]
+
