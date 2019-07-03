@@ -28,8 +28,7 @@ setup(
     license='your license',
     entry_points={
         'console_scripts': [
-            'gs = ns3_testbed_nodes.gs:main',
-            'r = ns3_testbed_nodes.r:main'
+            'testbed_robot = ns3_testbed_nodes.testbed_robot:main'
         ],
     },
 )

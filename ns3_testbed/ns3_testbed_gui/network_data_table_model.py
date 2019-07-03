@@ -34,10 +34,14 @@ class NetworkDataTableModel(QAbstractTableModel):
         queue = self.pipe_reader.queue
         new_network_data = dict()
         while not queue.empty():
-            parts = testbed_decode(queue.get())
-            key = (parts[0],parts[1])
-            value = parts[2:]
-            new_network_data[key]=value
+            is_valid, parts = testbed_decode(queue.get())
+            if is_valid:
+                key = (parts[0],parts[1])
+                value = parts[2:]
+                new_network_data[key]=value
+            else:
+                # testbed_decode failed to decode
+                print("bad decode from pipe: '%s'"%parts)
         self.set_data(new_network_data)
 
     def set_data(self, network_data):

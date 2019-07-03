@@ -4,6 +4,7 @@ from os.path import expanduser
 from fcntl import flock, LOCK_EX, LOCK_UN
 from threading import Thread
 from queue import Queue
+from time import sleep
 
 PIPE_NAME=os.path.join(expanduser("~"), "_testbed_pipe.pipe")
 def _maybe_make_pipe():
@@ -35,7 +36,11 @@ def _pipe_consumer_thread(queue):
     with open(PIPE_NAME) as f:
         while True:
             line = f.readline()
-#            print("read then enqueue line: %s"%line)
+            if not line:
+                # we can get an empty line if the pipe is not connected
+                sleep(0.1)
+                continue
+
             try:
                 queue.put(line)
             except queue.full:

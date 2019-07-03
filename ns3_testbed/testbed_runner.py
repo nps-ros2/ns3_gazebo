@@ -49,9 +49,9 @@ def nns_start(name, nns, cmd):
 
 if __name__ == '__main__':
     print("start GS...")
-    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "gs", "-p"])
+    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "-p", "GS"])
     print("start R1...")
-    nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "r","1"])
+    nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "-p", "R1"])
     print("Running...")
 
 # no, use GUI
