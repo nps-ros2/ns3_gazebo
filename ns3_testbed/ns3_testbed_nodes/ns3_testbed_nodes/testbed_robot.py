@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
+from sys import stdout
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from os.path import join, expanduser
 from collections import defaultdict
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-from ns3_testbed_nodes.testbed_codec import testbed_decode
+from ns3_testbed_nodes.testbed_codec import testbed_encode, testbed_decode
 from ns3_testbed_nodes.pipe_logger import PipeLogger, PIPE_NAME
 from ns3_testbed_nodes.setup_reader import read_setup
 
 class TestbedRobot(Node):
 
     def _make_publisher_timer_callback_function(self, subscription_name, size):
-        def fn(self):
-            self.get_logger().info("publisher callback for %s"%subscription_name)
+        def fn():
+#            self.get_logger().info("publisher callback for %s"%subscription_name)
             self.counters[subscription_name] += 1
             count = self.counters[subscription_name]
             msg = String()
@@ -21,11 +22,11 @@ class TestbedRobot(Node):
                                       subscription_name,
                                       count,
                                       size)
-            self.publisher_managers.publish(msg)
+            self.publisher_managers[subscription_name].publish(msg)
         return fn
 
     def _subscription_callback_function(self, msg):
-        self.get_logger().info("subscription callback")
+#        self.get_logger().info("subscription callback")
         source, name, number, size, dt = testbed_decode(msg.data)
         response = "%s,%s,%d,%d,%f"%(source, name, number, size, dt)
         if self.pipe_logger:
@@ -34,18 +35,18 @@ class TestbedRobot(Node):
             # use Node's native logger
             self.get_logger().info(response)
 
-    def __init__(self, robot_name, publishers, subscribers, use_pipe_logger):
+    def __init__(self, robot_name, publishers, subscribers, local_test):
         super().__init__(robot_name)
-        self.pipe_logger = PipeLogger()
         self.robot_name = robot_name
-        if use_pipe_logger:
-            self.pipe_logger = PipeLogger()
-        else:
+        if local_test:
             self.pipe_logger = None
+        else:
+            self.pipe_logger = PipeLogger()
 
         # start publishers
         self.counters = defaultdict(int)
         self.publisher_managers = dict()
+        self.timers = list()
         for publisher in publishers:
             # only publish to subscriptions intended for this robot
             if publisher.robot_name != robot_name:
@@ -67,6 +68,8 @@ class TestbedRobot(Node):
             publisher_timer_callback_function = \
                             self._make_publisher_timer_callback_function(
                                                    subscription_name, size)
+            timer = self.create_timer(period, publisher_timer_callback_function)
+            self.timers.append(timer)
 
         # start subscribers
         subscriptions = list()
@@ -89,20 +92,23 @@ def main():
                             formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument("robot_name", type=str,
                         help="The name of this robot node.")
-    parser.add_argument("-p","--use_pipe_logger", action="store_true",
-                        help="Send output to pipe '%s'"%PIPE_NAME)
+    parser.add_argument("-l","--local_test", action="store_true",
+                        help="Local test mode, do not send output to "
+                             "pipe '%s'"%PIPE_NAME)
     parser.add_argument("-s","--setup_file", type=str,
                         help="The CSV setup file.",
                         default = default_setup_file)
     args = parser.parse_args()
     print("Starting testbed_robot %s"%args.robot_name)
+    stdout.flush()
 
     # get setup parameters
     publishers, subscribers = read_setup(args.setup_file)
+    stdout.flush()
 
     rclpy.init()
     robot_node = TestbedRobot(args.robot_name, publishers, subscribers,
-                              args.use_pipe_logger)
+                              args.local_test)
     rclpy.spin(robot_node)
     robot_node.destroy_node()
     rclpy.shutdown()

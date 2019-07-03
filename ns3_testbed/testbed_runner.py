@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Adapted from https://github.com/larsks/python-netns/blob/master/netns.py
+from argparse import ArgumentParser
 import os
 import time, subprocess, threading, time
 from ctypes import CDLL, get_errno
@@ -42,16 +43,27 @@ def output_handler(proc, name):
         print("%s: %s"%(name, line.decode('utf-8')))
 
 def nns_start(name, nns, cmd):
-    set_nns(nns)
+    if args.local_test:
+        # local test
+        cmd.append("-l")
+    else:
+        set_nns(nns)
+
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     t = threading.Thread(target=output_handler, args=(p, name))
     t.start()
 
 if __name__ == '__main__':
+    parser = ArgumentParser(description="Start testbed robots.")
+    parser.add_argument("-l","--local_test", action="store_true",
+                        help="Local test mode, do not send output to pipe")
+    args = parser.parse_args()
+    print("Starting testbed runner...")
+
     print("start GS...")
-    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "-p", "GS"])
+    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "GS"])
     print("start R1...")
-    nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "-p", "R1"])
+    nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "R1"])
     print("Running...")
 
 # no, use GUI

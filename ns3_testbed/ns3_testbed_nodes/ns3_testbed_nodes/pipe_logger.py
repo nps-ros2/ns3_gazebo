@@ -38,6 +38,7 @@ def _pipe_consumer_thread(queue):
             line = f.readline()
             if not line:
                 # we can get an empty line if the pipe is not connected
+                # so try not to busy-wait and wait for it to open again
                 sleep(0.1)
                 continue
 

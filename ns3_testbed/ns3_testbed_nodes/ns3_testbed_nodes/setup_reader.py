@@ -25,7 +25,7 @@ def read_setup(filename="../csv_setup/example1.csv"):
         mode="start"
         reader = csv.reader(f)
         for row in reader:
-            print(row)
+#            print(row)
 
             # mode publish
             if row[0]=="publish":
@@ -54,4 +54,11 @@ def read_setup(filename="../csv_setup/example1.csv"):
                 subscribers.append(SubscribeRecord(row))
 
         return publishers, subscribers
+
+def robot_names(publishers, subscribers):
+    names = set()
+    for publisher in publishers:
+        names.add(publisher.robot_name)
+    for subscriber in subscribers:
+        names.add(subscriber.robot_name)
 

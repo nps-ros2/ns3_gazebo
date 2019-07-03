@@ -11,13 +11,10 @@ def testbed_encode(source, message_name, message_number, padding_size):
 """Return tuple of source, message name, message number, message size,
    delta time in epoc seconds."""
 def testbed_decode(msg):
-    try:
-        t1=perf_counter()
-        parts=msg[:500].split(",") # 500 should be fine, just don't parse MB size.
-        dt = t1 - float(parts[3])
-        return True, [parts[0], parts[1], int(parts[2]), len(msg), dt]
-    except IndexError as e:
-        return False, "%s"%msg[:120]
+    t1=perf_counter()
+    parts=msg[:500].split(",") # 500 should be fine, just don't parse MB size.
+    dt = t1 - float(parts[3])
+    return parts[0], parts[1], int(parts[2]), len(msg), dt
 
 COLUMNS = ["Source", "Subscription", "Index", "Size", "Latency"]
 
