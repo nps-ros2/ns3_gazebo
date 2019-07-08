@@ -1,3 +1,4 @@
+#include <getopt.h>
 #include <cstdio>
 #include <iostream> // std::cout
 #include <iomanip> // std::setprecision
@@ -10,7 +11,62 @@
 #include "ns3/tap-bridge-module.h"
 #include "ns3/random-variable-stream.h"
 
-static const int COUNT=5;
+static int COUNT;
+
+// parse user input
+int get_options(int argc, char *argv[]) {
+
+  int count = 5;
+
+  // parse options
+  int option_index; // not used
+  while (1) {
+
+    const struct option long_options[] = {
+      // options
+      {"help",                          no_argument, 0, 'h'},
+      {"Help",                          no_argument, 0, 'H'},
+      {"count",                   required_argument, 0, 'c'},
+
+      // end
+      {0,0,0,0}
+    };
+
+    int ch = getopt_long(argc, argv, "hHc:", long_options, &option_index);
+
+    if (ch == -1) {
+      // no more arguments
+      break;
+    }
+    if (ch == 0) {
+      // command options set flags and use ch==0
+      continue;
+    }
+    switch (ch) {
+      case 'h': {	// help
+        std::cout << "Usage: -h|-H|-c <count>\n";
+        exit(0);
+      }
+      case 'H': {	// Help
+        std::cout << "Usage: -h|-H|-c <count>\n";
+        exit(0);
+      }
+      case 'c': {	// count
+        count = std::atoi(optarg);
+        break;
+      }
+      default:
+//        std::cerr << "unexpected command character " << ch << "\n";
+        exit(1);
+    }
+  }
+
+//  // parse the remaining tokens that were not consumed by options
+//  argc -= optind;
+//  argv += optind;
+
+  return count;
+}
 
 // set mobility for ground station and robot nodes
 //https://www.nsnam.org/doxygen/mobility-trace-example_8cc_source.html
@@ -126,6 +182,7 @@ void interval_function(const ns3::NodeContainer& ns3_nodes) {
 }
 
 int main(int argc, char *argv[]) {
+  COUNT = get_options(argc, argv);
 
   // Force flush of the stdout buffer.
   setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -141,7 +198,7 @@ int main(int argc, char *argv[]) {
   ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.)); // 1 year
 //  ns3::Simulator::Stop(ns3::Seconds(6.0)); // 6 seconds
 
-  std::cout << "Starting ns-3 Wifi simulator.\n";
+  std::cout << "Starting ns-3 Wifi simulator for " << COUNT << " namespaces.\n";
 
   // start interval function
   interval_function(ns3_nodes);
