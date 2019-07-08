@@ -30,8 +30,6 @@ from argparse import ArgumentParser
 import subprocess
 import sys
 
-COUNT=5
-
 def _run_cmd(cmd):
     print("Command: %s"%cmd)
     subprocess.run(cmd.split(), stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -141,7 +139,7 @@ if __name__=="__main__":
     parser.add_argument("-c", "--count", type=int, default=DEFAULT_COUNT,
                         help="The number of network namespaces to set up for, "
                              "default %d."%DEFAULT_COUNT)
-    parser.add_argument("-s", "--suppress_direct", action="store_true",
+    parser.add_argument("-d", "--include_direct", action="store_true",
                         help="Suppress direct connection setup")
     args = parser.parse_args()
 
@@ -152,12 +150,12 @@ if __name__=="__main__":
         for i in range(1,args.count+1):
             do_setup_nns(i)
             do_setup_wifi(i)
-            if not args.suppress_direct:
+            if args.include_direct:
                 do_setup_direct(i)
     elif args.command == "teardown":
         for i in range(1,args.count+1):
             do_teardown_wifi(i)
-            if not args.suppress_direct:
+            if args.include_direct:
                 do_teardown_direct(i)
             do_teardown_nns(i)
     else:
