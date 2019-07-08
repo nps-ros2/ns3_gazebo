@@ -12,7 +12,6 @@
   <author>your name</author>
   <author email="you@yours.com">your name</author>
 
-  <exec_depend>zzzzzzzzzzzzzzzzzzexample_interfaces</exec_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
 
