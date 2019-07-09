@@ -14,7 +14,8 @@ class TestbedRobot(Node):
 
     def _make_publisher_timer_callback_function(self, subscription_name, size):
         def fn():
-#            self.get_logger().info("publisher callback for %s"%subscription_name)
+            if self.verbose:
+                self.get_logger().info("publisher callback for %s"%subscription_name)
             self.counters[subscription_name] += 1
             count = self.counters[subscription_name]
             msg = String()
@@ -26,7 +27,8 @@ class TestbedRobot(Node):
         return fn
 
     def _subscription_callback_function(self, msg):
-#        self.get_logger().info("subscription callback")
+        if self.verbose:
+            self.get_logger().info("subscription callback")
         source, name, number, size, dt = testbed_decode(msg.data)
         response = "%s,%s,%d,%d,%f"%(source, name, number, size, dt)
         if self.pipe_logger:
@@ -35,10 +37,11 @@ class TestbedRobot(Node):
             # use Node's native logger
             self.get_logger().info(response)
 
-    def __init__(self, robot_name, publishers, subscribers, local_test):
+    def __init__(self, robot_name, publishers, subscribers, no_pipe, verbose):
         super().__init__(robot_name)
         self.robot_name = robot_name
-        if local_test:
+        self.verbose = verbose
+        if no_pipe:
             self.pipe_logger = None
         else:
             self.pipe_logger = PipeLogger()
@@ -49,12 +52,12 @@ class TestbedRobot(Node):
         self.timers = list()
         for publisher in publishers:
             # only publish to subscriptions intended for this robot
-            if publisher.robot_name != robot_name:
+            if publisher.node != robot_name:
                 continue
 
             # the publisher parameters
             period = 1/publisher.frequency
-            subscription_name = publisher.subscription_name
+            subscription_name = publisher.subscription
             size = publisher.size
 
             # the publisher manager
@@ -76,12 +79,12 @@ class TestbedRobot(Node):
         for subscriber in subscribers:
 
             # only subscribe to subscriptions intended for this robot
-            if subscriber.robot_name != robot_name:
+            if subscriber.node != robot_name:
                 continue
 
             subscription = self.create_subscription(
                                        String,
-                                       subscriber.subscription_name,
+                                       subscriber.subscription,
                                        self._subscription_callback_function)
             subscriptions.append(subscription)
 
@@ -92,12 +95,13 @@ def main():
                             formatter_class=ArgumentDefaultsHelpFormatter)
     parser.add_argument("robot_name", type=str,
                         help="The name of this robot node.")
-    parser.add_argument("-l","--local_test", action="store_true",
-                        help="Local test mode, do not send output to "
-                             "pipe '%s'"%PIPE_NAME)
     parser.add_argument("-s","--setup_file", type=str,
                         help="The CSV setup file.",
                         default = default_setup_file)
+    parser.add_argument("-p","--no_pipe", action="store_true",
+                        help="Do not send output to pipe '%s'."%PIPE_NAME)
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Enable verbose diagnostics.")
     args = parser.parse_args()
     print("Starting testbed_robot %s"%args.robot_name)
     stdout.flush()
@@ -108,7 +112,7 @@ def main():
 
     rclpy.init()
     robot_node = TestbedRobot(args.robot_name, publishers, subscribers,
-                              args.local_test)
+                              args.no_pipe, args.verbose)
     rclpy.spin(robot_node)
     robot_node.destroy_node()
     rclpy.shutdown()

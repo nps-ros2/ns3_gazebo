@@ -1,23 +1,39 @@
 import csv
 
-# publish: "robot_name","subscription_name","frequency","size","policy"
-# subscribe: "robot_name","subscription_name","policy"
+# publish: "node","subscription","frequency","size","history","depth","reliability","durability"
+# subscribe: "node","subscription","history","depth","reliability","durability"
+
+def _multiple(node):
+    entries = list()
+    if node[0] == "R" and "-" in node:
+        start,stop = node[1:].split("-")
+        for i in range(int(start), int(stop)+1):
+            entries.append("R%d"%i)
+    else:
+        entries.append(node)
+    return entries
 
 class PublishRecord():
     def __init__(self, row):
-        self.robot_name = row[0]
-        self.subscription_name = row[1]
+        self.node = row[0]
+        self.subscription = row[1]
         self.frequency = int(row[2])
         self.size = int(row[3])
-#        self.policy = row[4]
+        self.history = row[4]             # keep_last|keep_all
+        self.depth = int(row[5])          # used if using keep_last
+        self.reliability = row[6]         # reliable|best_effort
+        self.durability = row[7]          # transient_local|volatile
 
 class SubscribeRecord():
     def __init__(self, row):
-        self.robot_name = row[0]
-        self.subscription_name = row[1]
-#        self.policy = row[2]
+        self.node = row[0]
+        self.subscription = row[1]
+        self.history = row[2]             # keep_last|keep_all
+        self.depth = int(row[3])          # used if using keep_last
+        self.reliability = row[4]         # reliable|best_effort
+        self.durability = row[5]          # transient_local|volatile
 
-def read_setup(filename="../csv_setup/example1.csv"):
+def read_setup(filename):
     publishers = list()
     subscribers = list()
 
@@ -27,18 +43,18 @@ def read_setup(filename="../csv_setup/example1.csv"):
         for row in reader:
 #            print(row)
 
+            # blank first column
+            if not row[0]:
+                continue
+
             # mode publish
-            if row[0]=="publish":
+            if row[0].lower()=="publish":
                 mode = "publish"
                 continue
 
             # mode subscribe
-            if row[0]=="subscribe":
+            if row[0].lower()=="subscribe":
                 mode = "subscribe"
-                continue
-
-            # blank first column
-            if not row[0]:
                 continue
 
             # comment is not R* and not GS
@@ -47,18 +63,16 @@ def read_setup(filename="../csv_setup/example1.csv"):
                 continue
 
             # valid entry
-            if mode == "publish":
-                publishers.append(PublishRecord(row))
-                continue
-            if mode == "subscribe":
-                subscribers.append(SubscribeRecord(row))
+            entries = _multiple(row[0])
+            for entry in entries:
+                row[0]=entry
+                if mode == "publish":
+                    publishers.append(PublishRecord(row))
+                elif mode == "subscribe":
+                    subscribers.append(SubscribeRecord(row))
+                else:
+                    print("invalid mode '%s' for row '%s'"%(mode, ",".join(row)))
+                    raise RuntimeError("Invalid table.  Aborting")
 
         return publishers, subscribers
-
-def robot_names(publishers, subscribers):
-    names = set()
-    for publisher in publishers:
-        names.add(publisher.robot_name)
-    for subscriber in subscribers:
-        names.add(subscriber.robot_name)
 

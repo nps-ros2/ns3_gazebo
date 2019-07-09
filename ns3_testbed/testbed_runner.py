@@ -3,6 +3,7 @@
 from argparse import ArgumentParser
 from sys import exit
 import os
+from os.path import join, expanduser
 import time, subprocess, threading, time
 from ctypes import CDLL, get_errno
 
@@ -44,30 +45,56 @@ def output_handler(proc, name):
         print("%s: %s"%(name, line.decode('utf-8')))
 
 def nns_start(name, nns, cmd):
-    if args.local_test:
-        # local test
-        cmd.append("-l")
+
+    # --setup_file
+    cmd.append("-s")
+    cmd.append(args.setup_file)
+
+    # --no_nns
+    if args.no_nns:
+        # suppress nns
+        pass
     else:
+        # default uses nns
         try:
             set_nns(nns)
         except PermissionError as e:
             print("Error: This program must be run from root when using "
-                  "network namespaces.\nUse '--local_test' for local mode.\n"
-                  "Aborting.")
+                  "network namespaces.\n"
+                  "Use '--no_nns' to run outside namespaces.\nAborting.")
             exit(1)
 
+    # --no_pipe
+    if args.no_pipe:
+        cmd.append("-p")
+
+    # --verbose
+    if args.verbose:
+        cmd.append("-v")
+
+    # start
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     t = threading.Thread(target=output_handler, args=(p, name))
     t.start()
 
 if __name__ == '__main__':
     DEFAULT_COUNT = 5
+    default_setup_file = join(expanduser("~"),
+                         "gits/ns3_gazebo/ns3_testbed/csv_setup/example1.csv")
     parser = ArgumentParser(description="Start testbed robots.")
     parser.add_argument("-c", "--count", type=int, default=DEFAULT_COUNT,
                         help="The number of testbed robot nodes to set up for, "
                              "default %d."%DEFAULT_COUNT)
-    parser.add_argument("-l","--local_test", action="store_true",
-                        help="Local test mode, do not send output to pipe")
+    parser.add_argument("-s","--setup_file", type=str,
+                        help="The CSV setup file.",
+                        default = default_setup_file)
+    parser.add_argument("-n","--no_nns", action="store_true",
+                        help="Do not use network namespaces.")
+    parser.add_argument("-p","--no_pipe", action="store_true",
+                        help="Do not send output to pipe")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="Enable verbose diagnostics.")
+
     args = parser.parse_args()
     if args.count < 1:
         raise ValueError("Invalid count.")
@@ -75,12 +102,14 @@ if __name__ == '__main__':
     print("Starting testbed runner...")
 
     print("start nns1 GS...")
-    nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "GS"])
+    nns_start("GS", "nns1",
+              ["ros2","run","ns3_testbed_nodes", "testbed_robot", "GS"])
 
     for i in range(2,args.count+1):
         nns="nns%d"%i
         r="R%d"%(i-1)
         print("start %s %s..."%(nns,r))
-        nns_start(r, nns, ["ros2","run","ns3_testbed_nodes", "testbed_robot", r])
+        nns_start(r, nns,
+                  ["ros2","run","ns3_testbed_nodes", "testbed_robot", r])
     print("Running...")
 
