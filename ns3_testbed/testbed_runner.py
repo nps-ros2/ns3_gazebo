@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Adapted from https://github.com/larsks/python-netns/blob/master/netns.py
 from argparse import ArgumentParser
+from sys import exit
 import os
 import time, subprocess, threading, time
 from ctypes import CDLL, get_errno
@@ -47,27 +48,39 @@ def nns_start(name, nns, cmd):
         # local test
         cmd.append("-l")
     else:
-        set_nns(nns)
+        try:
+            set_nns(nns)
+        except PermissionError as e:
+            print("Error: This program must be run from root when using "
+                  "network namespaces.\nUse '--local_test' for local mode.\n"
+                  "Aborting.")
+            exit(1)
 
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     t = threading.Thread(target=output_handler, args=(p, name))
     t.start()
 
 if __name__ == '__main__':
+    DEFAULT_COUNT = 5
     parser = ArgumentParser(description="Start testbed robots.")
+    parser.add_argument("-c", "--count", type=int, default=DEFAULT_COUNT,
+                        help="The number of testbed robot nodes to set up for, "
+                             "default %d."%DEFAULT_COUNT)
     parser.add_argument("-l","--local_test", action="store_true",
                         help="Local test mode, do not send output to pipe")
     args = parser.parse_args()
+    if args.count < 1:
+        raise ValueError("Invalid count.")
+
     print("Starting testbed runner...")
 
-    print("start GS...")
+    print("start nns1 GS...")
     nns_start("GS", "nns1", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "GS"])
-    print("start R1...")
-    nns_start("R1", "nns2", ["ros2","run","ns3_testbed_nodes", "testbed_robot", "R1"])
-    print("Running...")
 
-# no, use GUI
-#    reader = PipeReader()
-#    while True:
-#        print("Queue: %s"%reader.queue.get())
+    for i in range(2,args.count+1):
+        nns="nns%d"%i
+        r="R%d"%(i-1)
+        print("start %s %s..."%(nns,r))
+        nns_start(r, nns, ["ros2","run","ns3_testbed_nodes", "testbed_robot", r])
+    print("Running...")
 
