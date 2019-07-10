@@ -1,4 +1,7 @@
 import csv
+from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, \
+     QoSReliabilityPolicy
+from rclpy.qos import QoSProfile
 
 PUBLISH_HEADER = "node,subscription,frequency,size," \
                  "history,depth,reliability,durability"
@@ -27,25 +30,63 @@ def _validate_header(row, mode):
         # treat this as a comment
         print("Table comment: %s"%csv_row)
 
+# ref. https://github.com/ros2/demos/blob/master/topic_monitor/topic_monitor/scripts/data_publisher.py
+def _qos_profile(history, depth, reliability, durability):
+    # depth
+    profile = QoSProfile(depth = depth)
+
+    # history
+    if history.lower() == "keep_all":
+        profile.history = QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_ALL
+    elif history.lower() == "keep_last":
+        profile.history = QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST
+    else:
+        raise RuntimeError("Invalid history policy: %s"%history)
+
+    # reliability
+    if reliability.lower() == "reliable":
+        profile.reliability = \
+                   QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_RELIABLE
+    elif reliability.lower() == "best_effort":
+        profile.reliability = \
+                   QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT
+    else:
+        raise RuntimeError("Invalid reliability policy: %s"%reliability)
+
+    # durability
+    if durability.lower() == "transient_local":
+        profile.durability = \
+                   QoSDurabilityPolicy.RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL
+    elif durability.lower() == "volatile":
+        profile.durability = \
+                   QoSDurabilityPolicy.RMW_QOS_POLICY_DURABILITY_VOLATILE
+    else:
+        raise RuntimeError("Invalid durability policy: %s"%durability)
+
+    return profile
+
 class PublishRecord():
     def __init__(self, row):
         self.node = row[0]
         self.subscription = row[1]
         self.frequency = int(row[2])
         self.size = int(row[3])
-        self.history = row[4]             # keep_last|keep_all
-        self.depth = int(row[5])          # used if using keep_last
-        self.reliability = row[6]         # reliable|best_effort
-        self.durability = row[7]          # transient_local|volatile
+
+        history = row[4]             # keep_last|keep_all
+        depth = int(row[5])          # used if using keep_last
+        reliability = row[6]         # reliable|best_effort
+        durability = row[7]          # transient_local|volatile
+        self.qos_profile = _qos_profile(history, depth, reliability, durability)
 
 class SubscribeRecord():
     def __init__(self, row):
         self.node = row[0]
         self.subscription = row[1]
-        self.history = row[2]             # keep_last|keep_all
-        self.depth = int(row[3])          # used if using keep_last
-        self.reliability = row[4]         # reliable|best_effort
-        self.durability = row[5]          # transient_local|volatile
+        history = row[2]             # keep_last|keep_all
+        depth = int(row[3])          # used if using keep_last
+        reliability = row[4]         # reliable|best_effort
+        durability = row[5]          # transient_local|volatile
+        self.qos_profile = _qos_profile(history, depth, reliability, durability)
 
 def read_setup(filename, verbose):
     publishers = list()

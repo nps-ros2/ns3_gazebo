@@ -58,22 +58,21 @@ class TestbedRobot(Node):
             if publisher.node != robot_name:
                 continue
 
-            # the publisher parameters
-            period = 1/publisher.frequency
-            subscription_name = publisher.subscription
-            size = publisher.size
-
             # the publisher manager
-            publisher_manager = self.create_publisher(String, subscription_name)
-            self.publisher_managers[subscription_name] = publisher_manager
+            publisher_manager = self.create_publisher(
+                                  String,
+                                  publisher.subscription,
+                                  qos_profile=publisher.qos_profile)
+            self.publisher_managers[publisher.subscription] = publisher_manager
 
             # the counter
-            counter = self.counters[subscription_name]
+            counter = self.counters[publisher.subscription]
 
             # the callback function that is dynamically created using closure
             publisher_timer_callback_function = \
                             self._make_publisher_timer_callback_function(
-                                                   subscription_name, size)
+                                           publisher.subscription, publisher.size)
+            period = 1/publisher.frequency
             timer = self.create_timer(period, publisher_timer_callback_function)
             self.timers.append(timer)
 
@@ -86,9 +85,10 @@ class TestbedRobot(Node):
                 continue
 
             subscription = self.create_subscription(
-                                       String,
-                                       subscriber.subscription,
-                                       self._subscription_callback_function)
+                                  String,
+                                  subscriber.subscription,
+                                  self._subscription_callback_function,
+                                  qos_profile=subscriber.qos_profile)
             subscriptions.append(subscription)
 
 def main():
