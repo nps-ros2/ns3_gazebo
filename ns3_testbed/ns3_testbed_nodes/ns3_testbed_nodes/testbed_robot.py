@@ -23,14 +23,17 @@ class TestbedRobot(Node):
                                       subscription_name,
                                       count,
                                       size)
+#            self.get_logger().info("_make_publish: '%s'"%msg.data[:60])
             self.publisher_managers[subscription_name].publish(msg)
         return fn
 
     def _subscription_callback_function(self, msg):
+#        self.get_logger().info("_make_subscribe: '%s'"%msg.data[:60])
         if self.verbose:
             self.get_logger().info("subscription callback")
         source, name, number, size, dt = testbed_decode(msg.data)
         response = "%s,%s,%d,%d,%f"%(source, name, number, size, dt)
+
         if self.pipe_logger:
             self.pipe_logger.log(response)
         else:
@@ -107,7 +110,7 @@ def main():
     stdout.flush()
 
     # get setup parameters
-    publishers, subscribers = read_setup(args.setup_file)
+    publishers, subscribers = read_setup(args.setup_file, args.verbose)
     stdout.flush()
 
     rclpy.init()

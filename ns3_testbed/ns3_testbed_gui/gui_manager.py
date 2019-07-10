@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QUrl
 from PyQt5.QtCore import QObject
 from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import QSortFilterProxyModel
 
 from version_file import VERSION
 from testbed_codec import COLUMNS
@@ -29,10 +30,14 @@ class GUIManager(QObject):
         # the network data table model
         self.network_data_table_model = NetworkDataTableModel(COLUMNS)
 
+        # the proxy model
+        self.proxy_model = QSortFilterProxyModel()
+
         # the network data table
         self.network_table = QTableView()
         self.network_table.setSortingEnabled(True)
         self.network_table.setSelectionMode(QAbstractItemView.NoSelection)
-        self.network_table.setModel(self.network_data_table_model)
+        self.proxy_model.setSourceModel(self.network_data_table_model)
+        self.network_table.setModel(self.proxy_model)
         self.w.setCentralWidget(self.network_table)
  

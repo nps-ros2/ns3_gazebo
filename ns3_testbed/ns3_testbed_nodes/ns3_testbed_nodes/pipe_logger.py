@@ -27,15 +27,17 @@ class PipeLogger():
         # secure exclusive lock, write, flush, unlock
         flock(f, LOCK_EX)
         print(text,file=f) # print appends \n
-        f.flush()
-#        print("log text: %s"%text)
+        try:
+            f.flush()
+        except BrokenPipeError as e:
+            print("pipe log failure: %s"%str(e))
         flock(f, LOCK_UN)
 
 # use PipeReader to consume pipe to queue
 def _pipe_consumer_thread(queue):
     with open(PIPE_NAME) as f:
         while True:
-            line = f.readline()
+            line = f.readline().rstrip()
             if not line:
                 # we can get an empty line if the pipe is not connected
                 # so try not to busy-wait and wait for it to open again

@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QTableView
 from PyQt5.QtCore import Qt, pyqtSlot, QAbstractTableModel, QTimer, QVariant, \
                          QModelIndex
 from pipe_logger import PipeReader
-from testbed_codec import testbed_decode
 
 class NetworkDataTableModel(QAbstractTableModel):
 
@@ -10,7 +9,7 @@ class NetworkDataTableModel(QAbstractTableModel):
         super(NetworkDataTableModel, self).__init__()
         self.column_titles = column_titles
         self.network_data = dict()
-        self.sorted_keys = list()
+        self.unsorted_keys = list()
 
 #        # fake data
 #        self.set_data({("a","b"):(3,4,5)})
@@ -34,7 +33,7 @@ class NetworkDataTableModel(QAbstractTableModel):
         queue = self.pipe_reader.queue
         new_network_data = dict()
         while not queue.empty():
-            parts = testbed_decode(queue.get())
+            parts = queue.get().split(",")
             key = (parts[0],parts[1])
             value = parts[2:]
             new_network_data[key]=value
@@ -46,7 +45,7 @@ class NetworkDataTableModel(QAbstractTableModel):
 
         # clear existing values
         zeros = [0]*(len(self.column_titles)-2)
-        for key in self.sorted_keys:
+        for key in self.unsorted_keys:
             self.network_data[key] = zeros
 
         # set new values
@@ -55,8 +54,7 @@ class NetworkDataTableModel(QAbstractTableModel):
 
         self.endResetModel()
 
-#        self.sorted_keys = sorted(self.network_data.keys())
-        self.sorted_keys = list(self.network_data.keys())
+        self.unsorted_keys = list(self.network_data.keys())
 
     def rowCount(self, parent=QModelIndex()):
         return len(self.network_data)
@@ -67,16 +65,15 @@ class NetworkDataTableModel(QAbstractTableModel):
     def data(self, index, role=Qt.DisplayRole):
         if role == Qt.DisplayRole:
             row = index.row()
-#            print("data row: %d, of %d"%(row, len(self.sorted_keys)))
+#            print("data row: %d, of %d"%(row, len(self.unsorted_keys)))
             column = index.column()
-            key = self.sorted_keys[row]
+            key = self.unsorted_keys[row]
             if column < 2:
                 return key[column]
             else:
                 value = self.network_data[key]
 #                print("data: %s %s %s"%(row, column, self.network_data[key]))
 #                print(type(value[column-2]))
-#            return "%.2f"%value[column-2]
             return value[column-2]
         else:
             return QVariant()

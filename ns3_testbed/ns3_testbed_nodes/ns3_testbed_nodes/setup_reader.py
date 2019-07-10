@@ -1,7 +1,9 @@
 import csv
 
-# publish: "node","subscription","frequency","size","history","depth","reliability","durability"
-# subscribe: "node","subscription","history","depth","reliability","durability"
+PUBLISH_HEADER = "node,subscription,frequency,size," \
+                 "history,depth,reliability,durability"
+SUBSCRIBE_HEADER = "node,subscription," \
+                   "history,depth,reliability,durability,,"
 
 def _multiple(node):
     entries = list()
@@ -12,6 +14,18 @@ def _multiple(node):
     else:
         entries.append(node)
     return entries
+
+def _validate_header(row, mode):
+    csv_row = ",".join(row).lower()
+    if mode == "publish":
+        if csv_row != PUBLISH_HEADER:
+            raise RuntimeError("Invalid row in publish section: %s"%csv_row)
+    elif mode == "subscribe":
+        if csv_row != SUBSCRIBE_HEADER:
+            raise RuntimeError("Invalid row in subscribe section: %s"%csv_row)
+    else:
+        # treat this as a comment
+        print("Table comment: %s"%csv_row)
 
 class PublishRecord():
     def __init__(self, row):
@@ -33,7 +47,7 @@ class SubscribeRecord():
         self.reliability = row[4]         # reliable|best_effort
         self.durability = row[5]          # transient_local|volatile
 
-def read_setup(filename):
+def read_setup(filename, verbose):
     publishers = list()
     subscribers = list()
 
@@ -41,7 +55,8 @@ def read_setup(filename):
         mode="start"
         reader = csv.reader(f)
         for row in reader:
-#            print(row)
+            if verbose:
+                print("Row: %s"%",".join(row))
 
             # blank first column
             if not row[0]:
@@ -57,9 +72,10 @@ def read_setup(filename):
                 mode = "subscribe"
                 continue
 
-            # comment is not R* and not GS
+            # row 0 is not R* and not GS so it must be a header
             if row[0][0]!="R" and row[0]!="GS":
-                print("Comment: %s"%",".join(row))
+                # validate header
+                _validate_header(row, mode)
                 continue
 
             # valid entry
@@ -71,7 +87,8 @@ def read_setup(filename):
                 elif mode == "subscribe":
                     subscribers.append(SubscribeRecord(row))
                 else:
-                    print("invalid mode '%s' for row '%s'"%(mode, ",".join(row)))
+                    print("invalid mode '%s' for row '%s'"%(
+                                                mode, ",".join(row)))
                     raise RuntimeError("Invalid table.  Aborting")
 
         return publishers, subscribers
