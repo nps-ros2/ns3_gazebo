@@ -99,15 +99,10 @@ if __name__ == '__main__':
     if args.count < 1:
         raise ValueError("Invalid count.")
 
-    print("Starting testbed runner...")
-
-    print("start nns1 GS...")
-    nns_start("GS", "nns1",
-              ["ros2","run","ns3_testbed_nodes", "testbed_robot", "GS"])
-
-    for i in range(2,args.count+1):
+    for i in range(1,args.count+1):
+        print("Starting testbed runner %d ..."%i)
         nns="nns%d"%i
-        r="R%d"%(i-1)
+        r="R%d"%(i)
         print("start %s %s..."%(nns,r))
         nns_start(r, nns,
                   ["ros2","run","ns3_testbed_nodes", "testbed_robot", r])

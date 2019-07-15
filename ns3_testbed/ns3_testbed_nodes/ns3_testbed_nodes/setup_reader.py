@@ -113,8 +113,8 @@ def read_setup(filename, verbose):
                 mode = "subscribe"
                 continue
 
-            # row 0 is not R* and not GS so it must be a header
-            if row[0][0]!="R" and row[0]!="GS":
+            # row [0][0] is not R so it must be a header
+            if row[0][0]!="R":
                 # validate header
                 _validate_header(row, mode)
                 continue
