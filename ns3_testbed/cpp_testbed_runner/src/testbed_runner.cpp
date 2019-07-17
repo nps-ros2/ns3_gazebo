@@ -2,17 +2,19 @@
 #include <cstdio>
 #include <memory>
 #include <string>
+#include <getopt.h>
 
 #include "rclcpp/rclcpp.hpp"
 //#include "rcutils/cmdline_parser.h"
 
 #include "std_msgs/msg/string.hpp"
 
-#include "setup_reader.hpp"
-#include "start_robots.hpp"
+//#include "setup_reader.hpp"
+#include "testbed_robot.hpp"
 
-static unsigned int count;
-static std::string default_setup_file = "../../csv_setup/example1.csv";
+/*
+static unsigned int count = 5;
+static const std::string default_setup_file = "../../csv_setup/example1.csv";
 static std::string setup_file = default_setup_file;
 static bool no_nns = true;
 static bool no_pipe = true;
@@ -20,8 +22,6 @@ static bool verbose = false;
 
 // parse user input
 int get_options(int argc, char *argv[]) {
-
-  unsigned int count = 5;
 
   // parse options
   int option_index; // not used
@@ -53,11 +53,11 @@ int get_options(int argc, char *argv[]) {
     }
     switch (ch) {
       case 'h': {	// help
-        std::cout << "Usage: -h|-H|-c <count>\n";
+        print_usage()
         exit(0);
       }
       case 'H': {	// Help
-        std::cout << "Usage: -h|-H|-c <count>\n";
+        print_usage()
         exit(0);
       }
       case 'c': {	// count
@@ -81,7 +81,8 @@ int get_options(int argc, char *argv[]) {
         break;
       }
       default:
-//        std::cerr << "unexpected command character " << ch << "\n";
+        std::cerr << "unexpected command character " << ch << "\n"
+                  << "See usage.\n"
         exit(1);
     }
   }
@@ -91,6 +92,39 @@ int get_options(int argc, char *argv[]) {
 //  argv += optind;
 
 }
+
+// start, stay here until done.
+void start_robots(unsigned int count, bool no_nns, bool no_pipe,
+                         bool verbose, publishers_subscribers_t* ps_ptr) {
+
+  // call once per process for rclcpp
+  rclcpp::init(argc, argv);
+
+  std::vector<std::thread> threads;
+
+  for(unsigned int i = 1; i<= count; i++) {
+    std::cout << "Starting testbed runner " << i << std::endl;
+
+    // nns#, R#
+    std::stringstream ss1;
+    std::stringstream ss2;
+    ss1 << "nns" << i;
+    ss2 << "R" << i;
+    std::string nns = ss1.str();
+    std::string r = ss2.str();
+
+    std::cout << "Starting " << nns << " " << r << std::endl;
+    std::thread t(testbed_robot_run, nns, r, no_nns, no_pipe, verbose, ps_ptr);
+  }
+  for (std::vector<std::thread>::iterator it = threads.begin();
+       it != threads.end(); ++it) {
+    it->join()
+  }
+
+  rclcpp::shutdown();
+  return 0;
+}
+
 
 void print_usage()
 {
@@ -128,4 +162,4 @@ int main(int argc, char * argv[])
   start_robots(count, no_nns, no_pipe, verbose, publishers_subscribers_ptr);
   std::cout << "Running...";
 }
-
+*/
