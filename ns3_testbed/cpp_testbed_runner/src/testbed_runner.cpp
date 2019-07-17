@@ -12,7 +12,6 @@
 //#include "setup_reader.hpp"
 #include "testbed_robot.hpp"
 
-/*
 static unsigned int count = 5;
 static const std::string default_setup_file = "../../csv_setup/example1.csv";
 static std::string setup_file = default_setup_file;
@@ -20,8 +19,21 @@ static bool no_nns = true;
 static bool no_pipe = true;
 static bool verbose = false;
 
+void print_usage()
+{
+  printf("Usage:\n");
+  printf("testbed_runner -h|-H|-c <count>|--count <count>|-s <file>|--setup_file <file>|-n|--no_nns|-p|--no_pipe|-v|--verbose\n");
+  printf("options:\n");
+  printf("-h : Print this help function.\n");
+  printf("-c <count>: Number of robots, starting at 1.\n");
+  printf("-s <setup file>: The CSV setup file.\n");
+  printf("-n: No network namespace.\n");
+  printf("-p: No pipe.\n");
+  printf("-v: verbose.\n");
+}
+
 // parse user input
-int get_options(int argc, char *argv[]) {
+void get_options(int argc, char *argv[]) {
 
   // parse options
   int option_index; // not used
@@ -53,11 +65,11 @@ int get_options(int argc, char *argv[]) {
     }
     switch (ch) {
       case 'h': {	// help
-        print_usage()
+        print_usage();
         exit(0);
       }
       case 'H': {	// Help
-        print_usage()
+        print_usage();
         exit(0);
       }
       case 'c': {	// count
@@ -82,7 +94,7 @@ int get_options(int argc, char *argv[]) {
       }
       default:
         std::cerr << "unexpected command character " << ch << "\n"
-                  << "See usage.\n"
+                  << "See usage.\n";
         exit(1);
     }
   }
@@ -97,10 +109,7 @@ int get_options(int argc, char *argv[]) {
 void start_robots(unsigned int count, bool no_nns, bool no_pipe,
                          bool verbose, publishers_subscribers_t* ps_ptr) {
 
-  // call once per process for rclcpp
-  rclcpp::init(argc, argv);
-
-  std::vector<std::thread> threads;
+  std::vector<std::thread*> threads;
 
   for(unsigned int i = 1; i<= count; i++) {
     std::cout << "Starting testbed runner " << i << std::endl;
@@ -114,30 +123,15 @@ void start_robots(unsigned int count, bool no_nns, bool no_pipe,
     std::string r = ss2.str();
 
     std::cout << "Starting " << nns << " " << r << std::endl;
-    std::thread t(testbed_robot_run, nns, r, no_nns, no_pipe, verbose, ps_ptr);
+    threads.push_back(new std::thread(testbed_robot_run, nns, r,
+                                      no_nns, no_pipe, verbose, ps_ptr));
   }
-  for (std::vector<std::thread>::iterator it = threads.begin();
+  for (std::vector<std::thread*>::iterator it = threads.begin();
        it != threads.end(); ++it) {
-    it->join()
+    (*it)->join();
   }
-
-  rclcpp::shutdown();
-  return 0;
 }
 
-
-void print_usage()
-{
-  printf("Usage:\n");
-  printf("testbed_runner -h|-H|-c <count>|--count <count>|-s <file>|--setup_file <file>|-n|--no_nns|-p|--no_pipe|-v|--verbose\n";
-  printf("options:\n");
-  printf("-h : Print this help function.\n");
-  printf("-c <count>: Number of robots, starting at 1.\n";
-  printf("-s <setup file>: The CSV setup file.\n";
-  printf("-n: No network namespace.\n";
-  printf("-p: No pipe.\n";
-  printf("-v: verbose.\n";
-}
 
 int main(int argc, char * argv[])
 {
@@ -146,20 +140,22 @@ int main(int argc, char * argv[])
   // even when executed simultaneously within the launch file.
   setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 
-  get_options(int argc, char * argv[]);
-
-//static int count;
-//static std::string default_setup_file = "../../csv_setup/example1.csv";
-//static std::string setup_file = default_setup_file;
-//static bool no_nns = true;
-//static bool no_pipe = true;
-//static bool verbose = false;
+  get_options(argc, argv);
 
   // pointer to static list of publishers and subscribers
   publishers_subscribers_t* publishers_subscribers_ptr =
                       new publishers_subscribers_t(setup_file, verbose);
 
+  std::cout << "num publisers: " << publishers_subscribers_ptr->publishers.size() << std::endl;
+  std::cout << "num subscribers: " << publishers_subscribers_ptr->subscribers.size() << std::endl;
+
+  // call once per process for rclcpp
+  rclcpp::init(argc, argv);
+
   start_robots(count, no_nns, no_pipe, verbose, publishers_subscribers_ptr);
-  std::cout << "Running...";
+  std::cout << "Running..." << std::endl;
+
+  rclcpp::shutdown();
+  return 0;
 }
-*/
+

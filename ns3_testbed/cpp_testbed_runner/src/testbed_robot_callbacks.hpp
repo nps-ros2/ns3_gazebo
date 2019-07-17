@@ -5,6 +5,7 @@
 #include <memory> // for shared_ptr
 #include <string>
 #include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
 
 class testbed_robot_t;
 
@@ -34,6 +35,7 @@ class publisher_callback_t {
 class subscriber_callback_t {
   private:
   testbed_robot_t* r_ptr;
+  const std::string subscription_name;
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription;
   const bool no_pipe;
   const bool verbose;
