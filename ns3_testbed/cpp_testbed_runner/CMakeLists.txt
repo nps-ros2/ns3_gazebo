@@ -14,7 +14,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
-find_package(builtin_interfaces REQUIRED)
+#find_package(builtin_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(example_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -22,16 +22,23 @@ find_package(rcutils)
 find_package(rmw REQUIRED)
 find_package(std_msgs REQUIRED)
 
-rosidl_generate_interfaces(testbed_message
+## should not need this, from https://answers.ros.org/question/315189/fail-at-ros2-idl-generation/
+#find_package(rosidl_typesupport_c REQUIRED)
+
+
+rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/TestbedMessage.msg"
     DEPENDENCIES std_msgs builtin_interfaces)
 
 add_library(testbed_robot src/testbed_robot.cpp)
 ament_target_dependencies(testbed_robot
+    "testbed_message"
     "example_interfaces"
     "rclcpp"
     "rcutils"
     "std_msgs")
+
+rosidl_target_interfaces(testbed_robot ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 add_library(testbed_robot_callbacks src/testbed_robot_callbacks.cpp)
 ament_target_dependencies(testbed_robot_callbacks
@@ -41,8 +48,11 @@ ament_target_dependencies(testbed_robot_callbacks
     "std_msgs"
     "testbed_message")
 
+rosidl_target_interfaces(testbed_robot_callbacks ${PROJECT_NAME} "rosidl_typesupport_cpp")
+
 add_library(setup_reader src/setup_reader.cpp)
 ament_target_dependencies(setup_reader
+    "testbed_message"
     "example_interfaces"
     "rclcpp"
     "rcutils"
@@ -55,6 +65,8 @@ ament_target_dependencies(testbed_runner
   "rclcpp"
   "rcutils"
   "std_msgs")
+
+#rosidl_target_interfaces(testbed_runner ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 target_link_libraries(testbed_runner testbed_robot testbed_robot_callbacks
                                      setup_reader)

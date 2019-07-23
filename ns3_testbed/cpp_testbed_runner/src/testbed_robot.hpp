@@ -10,12 +10,14 @@
 
 class testbed_robot_t : public rclcpp::Node {
 
-  private:
+  public:
   const std::string nns;
   const std::string r;
   const bool no_pipe;
   const bool verbose;
   const publishers_subscribers_t* ps_ptr;
+
+  private:
   std::vector<publisher_callback_t*> publisher_callbacks;
   std::vector<subscriber_callback_t*> subscriber_callbacks;
 
