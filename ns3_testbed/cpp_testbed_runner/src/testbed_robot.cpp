@@ -17,13 +17,13 @@ testbed_robot_t::testbed_robot_t(
           nns(_nns), r(_r), no_pipe(_no_pipe), verbose(_verbose),
           ps_ptr(_ps_ptr) {
 
-  std::cout << "testbed_robot_t.a" << std::endl;
+//  std::cout << "testbed_robot_t.a" << std::endl;
   // publishers
   for (std::vector<publish_record_t>::const_iterator it =
                  ps_ptr->publishers.begin();
                  it != ps_ptr->publishers.end(); ++it) {
 
-    std::cout << "testbed_robot_t.b" << std::endl;
+//    std::cout << "testbed_robot_t.b" << std::endl;
 
     // not meant for this robot
     if(it->robot_name != r) {
@@ -33,9 +33,11 @@ testbed_robot_t::testbed_robot_t(
     std::cout << "testbed_robot_t.c" << std::endl;
 
     // add publisher
-    publisher_callbacks.emplace_back(publisher_callback_t(this,
+    publisher_callbacks.emplace_back(new publisher_callback_t(this,
                                       it->subscription,
-                                      it->size, it->frequency, verbose));
+                                      it->size, it->frequency,
+                                      it->qos_profile,
+                                      verbose));
   }
 
   std::cout << "testbed_robot_t.d" << std::endl;
@@ -53,8 +55,8 @@ testbed_robot_t::testbed_robot_t(
 
     // add subscriber
     std::cout << "testbed_robot_t.f" << std::endl;
-    subscriber_callbacks.emplace_back(subscriber_callback_t(this,
-                                  it->subscription, no_pipe, verbose));
+    subscriber_callbacks.emplace_back(new subscriber_callback_t(this,
+                       it->subscription, it->qos_profile, no_pipe, verbose));
   }
   std::cout << "testbed_robot_t.g" << std::endl;
 }

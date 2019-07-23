@@ -16,8 +16,8 @@ class testbed_robot_t : public rclcpp::Node {
   const bool no_pipe;
   const bool verbose;
   const publishers_subscribers_t* ps_ptr;
-  std::vector<publisher_callback_t> publisher_callbacks;
-  std::vector<subscriber_callback_t> subscriber_callbacks;
+  std::vector<publisher_callback_t*> publisher_callbacks;
+  std::vector<subscriber_callback_t*> subscriber_callbacks;
 
   public:
   explicit testbed_robot_t(const std::string& _nns, const std::string& _r,

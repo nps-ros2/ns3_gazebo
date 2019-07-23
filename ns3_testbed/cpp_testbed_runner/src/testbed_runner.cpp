@@ -13,7 +13,7 @@
 #include "testbed_robot.hpp"
 
 static unsigned int count = 5;
-static const std::string default_setup_file = "../../csv_setup/example1.csv";
+static const std::string default_setup_file = "example1.csv";
 static std::string setup_file = default_setup_file;
 static bool no_nns = true;
 static bool no_pipe = true;

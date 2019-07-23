@@ -7,31 +7,46 @@
 #include <functional> // for bind
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+//#include "testbed_message/testbed_message.hpp"
+#include "cpp_testbed_runner/msg/testbed_message.hpp"
+//#include "testbed_message.hpp"
 
 #include "testbed_robot.hpp"
+
+using float_sec = std::chrono::duration<float>;
 
 // publisher_callback
 publisher_callback_t::publisher_callback_t(testbed_robot_t* _r_ptr,
                        const std::string _subscription_name,
                        const unsigned int _size,
                        const unsigned int _frequency,
+                       const rmw_qos_profile_t _qos_profile,
                        const bool _verbose) :
-           count(0),
-           msg(),
-           publisher(),
-
            r_ptr(_r_ptr),
            subscription_name(_subscription_name),
            size(_size),
            frequency(_frequency),
-//zz           timer(_r_ptr->create_wall_timer(std::chrono::seconds(1/_frequency),
-//zz                                           this->publish_message)),
+           qos_profile(_qos_profile),
            verbose(_verbose),
-           node_logger(r_ptr->get_logger()) {
+
+           count(0),
+           publisher(_r_ptr->create_publisher<std_msgs::msg::String>(
+                                          _subscription_name, _qos_profile)),
+           timer(_r_ptr->create_wall_timer(std::chrono::microseconds(1000000/_frequency),
+                      std::bind(&publisher_callback_t::publish_message, this))),
+           node_logger(r_ptr->get_logger()) 
+{
+  std::cerr << "publisher_callback_t r_ptr: " << r_ptr << "\n";
+  std::cerr << "publisher_callback_t subscription: " << subscription_name << "\n";
+  std::cerr << "publisher_callback_t this: " << this << "\n";
+  std::cerr << "publisher_callback_t size " << size << " frequency "
+           << frequency << "\n";
 }
 
+// http://www.theconstructsim.com/wp-content/uploads/2019/03/ROS2-IN-5-DAYS-e-book.pdf
 void publisher_callback_t::publish_message() {
 
+  std::shared_ptr<std_msgs::msg::String> msg(std::make_shared<std_msgs::msg::String>());
   msg->data = "zzzz";
   count++;
   std::stringstream ss;
@@ -52,6 +67,7 @@ using Pstd_mem = void(subscriber_callback_t::*)
 //                           const std_msgs::msg::String::SharedPtr msg);
 subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
                       const std::string _subscription_name,
+                      const rmw_qos_profile_t _qos_profile,
                       const bool _no_pipe,
                       const bool _verbose) : //zz also pipe_logger
          r_ptr(_r_ptr),
@@ -85,6 +101,7 @@ subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
 ////                   std::bind(&subscriber_callback_t::subscriber_callback,
 ////                             std::placeholders::_1))),
 
+         qos_profile(_qos_profile),
          no_pipe(_no_pipe),
          verbose(_verbose),
          node_logger(r_ptr->get_logger()) {
@@ -98,6 +115,7 @@ subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
   auto callback =
           [this](const std_msgs::msg::String::SharedPtr msg) -> void
           {
+            std::cerr << "subscriber.zzzzzzzzzzzzzz\n";
             this->subscriber_callback(msg);
           };
   subscription = _r_ptr->create_subscription<std_msgs::msg::String>(

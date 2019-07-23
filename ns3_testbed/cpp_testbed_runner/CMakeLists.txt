@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 project(cpp_testbed_runner)
 
 # Default to C++14
@@ -12,11 +14,17 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 find_package(example_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rcutils)
 find_package(rmw REQUIRED)
 find_package(std_msgs REQUIRED)
+
+rosidl_generate_interfaces(testbed_message
+    "msg/TestbedMessage.msg"
+    DEPENDENCIES std_msgs builtin_interfaces)
 
 add_library(testbed_robot src/testbed_robot.cpp)
 ament_target_dependencies(testbed_robot
@@ -30,6 +38,14 @@ ament_target_dependencies(testbed_robot_callbacks
     "example_interfaces"
     "rclcpp"
     "rcutils"
+    "std_msgs"
+    "testbed_message")
+
+add_library(setup_reader src/setup_reader.cpp)
+ament_target_dependencies(setup_reader
+    "example_interfaces"
+    "rclcpp"
+    "rcutils"
     "std_msgs")
 
 add_executable(testbed_runner src/testbed_runner.cpp)
@@ -40,23 +56,11 @@ ament_target_dependencies(testbed_runner
   "rcutils"
   "std_msgs")
 
-target_link_libraries(testbed_runner testbed_robot testbed_robot_callbacks)
+target_link_libraries(testbed_runner testbed_robot testbed_robot_callbacks
+                                     setup_reader)
 
 install(TARGETS testbed_runner DESTINATION lib/${PROJECT_NAME})
 
-
-#function(custom_executable target)
-#  add_executable(${target} src/${target}.cpp)
-#  ament_target_dependencies(${target}
-#    "example_interfaces"
-#    "rclcpp"
-#    "rcutils"
-#    "std_msgs")
-#  install(TARGETS ${target}
-#  DESTINATION lib/${PROJECT_NAME})
-#endfunction()
-#
-## Executables
-#custom_executable(testbed_runner)
+file(COPY ../csv_setup/example1.csv DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 ament_package()
