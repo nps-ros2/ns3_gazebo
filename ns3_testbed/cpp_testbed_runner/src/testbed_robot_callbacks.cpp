@@ -12,6 +12,17 @@
 
 #include "testbed_robot.hpp"
 
+// epoc time in nanoseconds using high_resolution_clock
+long _now() {
+// https://stackoverflow.com/questions/31255486/c-how-do-i-convert-a-stdchronotime-point-to-long-and-back
+  std::chrono::time_point<std::chrono::high_resolution_clock> now =
+                                std::chrono::high_resolution_clock::now();
+  auto now_us = std::chrono::time_point_cast<std::chrono::nanoseconds>(now);
+  auto epoch = now_us.time_since_epoch();
+  long t = std::chrono::duration_cast<std::chrono::nanoseconds>(epoch).count();
+  return t;
+}
+
 // publisher_callback
 publisher_callback_t::publisher_callback_t(testbed_robot_t* _r_ptr,
                        const std::string _subscription_name,
@@ -36,7 +47,8 @@ publisher_callback_t::publisher_callback_t(testbed_robot_t* _r_ptr,
            node_logger(r_ptr->get_logger()) 
 {
   std::cerr << "publisher_callback_t r_ptr: " << r_ptr << "\n";
-  std::cerr << "publisher_callback_t subscription: " << subscription_name << "\n";
+  std::cerr << "publisher_callback_t subscription: "
+            << subscription_name << "\n";
   std::cerr << "publisher_callback_t this: " << this << "\n";
   std::cerr << "publisher_callback_t size " << size << " frequency "
            << frequency << "\n";
@@ -48,39 +60,18 @@ void publisher_callback_t::publish_message() {
   std::shared_ptr<cpp_testbed_runner::msg::TestbedMessage> msg(
                 std::make_shared<cpp_testbed_runner::msg::TestbedMessage>());
 
-// https://stackoverflow.com/questions/31255486/c-how-do-i-convert-a-stdchronotime-point-to-long-and-back
-  std::chrono::time_point<std::chrono::high_resolution_clock> now =
-                                std::chrono::high_resolution_clock::now();
-  auto now_us = std::chrono::time_point_cast<std::chrono::nanoseconds>(now);
-  auto epoch = now_us.time_since_epoch();
-  long t = std::chrono::duration_cast<std::chrono::nanoseconds>(epoch).count();
-
-  msg->nanoseconds = t;
+  msg->nanoseconds = _now();
   msg->source = r_ptr->r;
   msg->message_name = subscription_name;
   msg->message_number = ++count;
   msg->message = std::string(size, subscription_name[0]);
 
   if (verbose) {
-    RCLCPP_INFO(node_logger, "Publishing: %s %d %d",
-                             subscription_name, count, size);
+    RCLCPP_INFO(node_logger, "Publishing: %s count %d size %d",
+                             subscription_name.c_str(), count, size);
   }
 
   publisher->publish(msg);
-
-/*
-  std::shared_ptr<std_msgs::msg::String> msg(std::make_shared<std_msgs::msg::String>());
-  msg->data = "zzzz";
-  count++;
-  std::stringstream ss;
-  ss << "size: " << size << ", frequency: " << frequency;
-  if (verbose) {
-    RCLCPP_INFO(node_logger, "Publishing: '%s'", ss.str().c_str());
-    RCLCPP_INFO(node_logger, "Publishing: '%s'", msg->data.c_str());
-  }
-
-  publisher->publish(msg);
-*/
 }
 
 // subscriber_callback
@@ -100,30 +91,32 @@ subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
          node_logger(r_ptr->get_logger()) {
 
 
-  auto callback =
-          [this](const cpp_testbed_runner::msg::TestbedMessage::SharedPtr msg) -> void
+  auto callback = [this](
+          const cpp_testbed_runner::msg::TestbedMessage::SharedPtr msg) -> void
           {
-            std::cerr << "subscriber.zzzzzzzzzzzzzz\n";
             this->subscriber_callback(msg);
           };
-  subscription = _r_ptr->create_subscription<cpp_testbed_runner::msg::TestbedMessage>(
+  subscription = _r_ptr->create_subscription<
+                      cpp_testbed_runner::msg::TestbedMessage>(
                       subscription_name, callback);
-
-
-
 }
 
 void subscriber_callback_t::subscriber_callback(
               const cpp_testbed_runner::msg::TestbedMessage::SharedPtr msg) {
-  if(verbose) {
-    RCLCPP_INFO(node_logger, "subscription callback: '%s' %d",
-                 msg->message_name.c_str(), msg->message_number);
+
+  // Source robot, subscription name, index number, size, latency dt
+  std::stringstream ss;
+  ss << r_ptr->r
+     << msg->message_name
+     << msg->message_number
+     << msg->message.size()
+     << (_now()-msg->nanoseconds)/1000000000.0;
+  if(no_pipe || verbose) {
+    RCLCPP_INFO(node_logger, ss.str().c_str());
   }
 
-  if(no_pipe) {
-    // use node_logger
-  } else {
-    // zz use pipe
+  if(!no_pipe) {
+    r_ptr->pipe_writer.log(ss.str());
   }
 }
 

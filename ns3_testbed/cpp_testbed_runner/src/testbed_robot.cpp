@@ -6,6 +6,7 @@
 #include "testbed_robot.hpp"
 #include "setup_reader.hpp"
 #include "testbed_robot_callbacks.hpp"
+#include "pipe_writer.hpp"
 
 
 testbed_robot_t::testbed_robot_t(
@@ -14,7 +15,9 @@ testbed_robot_t::testbed_robot_t(
                         bool _no_pipe, bool _verbose,
                         const publishers_subscribers_t* const _ps_ptr) :
           Node("testbed_robot_"+_r),
-          nns(_nns), r(_r), no_pipe(_no_pipe), verbose(_verbose),
+          nns(_nns), r(_r), no_pipe(_no_pipe),
+          pipe_writer(_no_pipe),
+          verbose(_verbose),
           ps_ptr(_ps_ptr) {
 
 //  std::cout << "testbed_robot_t.a" << std::endl;

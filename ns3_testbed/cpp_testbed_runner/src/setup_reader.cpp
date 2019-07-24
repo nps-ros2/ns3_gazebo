@@ -3,6 +3,7 @@
 #include <sstream> // strngstream
 #include <fstream>
 #include <locale> // tolower
+#include <cassert>
 #include <stdexcept>
 
 #include "rclcpp/rclcpp.hpp"

@@ -22,10 +22,6 @@ find_package(rcutils)
 find_package(rmw REQUIRED)
 find_package(std_msgs REQUIRED)
 
-## should not need this, from https://answers.ros.org/question/315189/fail-at-ros2-idl-generation/
-#find_package(rosidl_typesupport_c REQUIRED)
-
-
 rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/TestbedMessage.msg"
     DEPENDENCIES std_msgs builtin_interfaces)
@@ -48,7 +44,8 @@ ament_target_dependencies(testbed_robot_callbacks
     "std_msgs"
     "testbed_message")
 
-rosidl_target_interfaces(testbed_robot_callbacks ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_target_interfaces(testbed_robot_callbacks
+                         ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 add_library(setup_reader src/setup_reader.cpp)
 ament_target_dependencies(setup_reader
@@ -58,6 +55,8 @@ ament_target_dependencies(setup_reader
     "rcutils"
     "std_msgs")
 
+add_library(pipe_writer src/pipe_writer.cpp)
+
 add_executable(testbed_runner src/testbed_runner.cpp)
 
 ament_target_dependencies(testbed_runner
@@ -66,10 +65,8 @@ ament_target_dependencies(testbed_runner
   "rcutils"
   "std_msgs")
 
-#rosidl_target_interfaces(testbed_runner ${PROJECT_NAME} "rosidl_typesupport_cpp")
-
 target_link_libraries(testbed_runner testbed_robot testbed_robot_callbacks
-                                     setup_reader)
+                                     setup_reader pipe_writer)
 
 install(TARGETS testbed_runner DESTINATION lib/${PROJECT_NAME})
 

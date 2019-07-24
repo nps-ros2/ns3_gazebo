@@ -7,6 +7,7 @@
 
 #include "testbed_robot_callbacks.hpp"
 #include "setup_reader.hpp"
+#include "pipe_writer.hpp"
 
 class testbed_robot_t : public rclcpp::Node {
 
@@ -14,6 +15,7 @@ class testbed_robot_t : public rclcpp::Node {
   const std::string nns;
   const std::string r;
   const bool no_pipe;
+  pipe_writer_t pipe_writer;
   const bool verbose;
   const publishers_subscribers_t* ps_ptr;
 
