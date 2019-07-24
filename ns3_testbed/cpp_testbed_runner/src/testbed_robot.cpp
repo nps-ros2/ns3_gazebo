@@ -7,6 +7,7 @@
 #include "setup_reader.hpp"
 #include "testbed_robot_callbacks.hpp"
 #include "pipe_writer.hpp"
+#include "set_nns.hpp"
 
 
 testbed_robot_t::testbed_robot_t(
@@ -70,9 +71,8 @@ void testbed_robot_run(std::string nns, std::string r,
                        publishers_subscribers_t* ps_ptr) {
 
   // maybe move to nns
-  if(!use_nns) {
-    // set nns
-    // zz
+  if(use_nns) {
+    set_nns(nns);
   }
 
   std::cout << "testbed_robot_run.a" << std::endl;

@@ -80,11 +80,11 @@ void get_options(int argc, char *argv[]) {
         setup_file = optarg;
         break;
       }
-      case 'n': {	// no nns
-        use_nns = false;
+      case 'n': {	// nns
+        use_nns = true;
         break;
       }
-      case 'p': {	// no pipe
+      case 'p': {	// pipe
         use_pipe = true;
         break;
       }

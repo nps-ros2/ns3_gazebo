@@ -57,6 +57,8 @@ ament_target_dependencies(setup_reader
 
 add_library(pipe_writer src/pipe_writer.cpp)
 
+add_library(set_nns src/set_nns.cpp)
+
 add_executable(testbed_runner src/testbed_runner.cpp)
 
 ament_target_dependencies(testbed_runner
@@ -66,7 +68,7 @@ ament_target_dependencies(testbed_runner
   "std_msgs")
 
 target_link_libraries(testbed_runner testbed_robot testbed_robot_callbacks
-                                     setup_reader pipe_writer)
+                                     setup_reader pipe_writer set_nns)
 
 install(TARGETS testbed_runner DESTINATION lib/${PROJECT_NAME})
 
