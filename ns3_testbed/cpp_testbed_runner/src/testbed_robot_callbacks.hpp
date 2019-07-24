@@ -50,7 +50,7 @@ class subscriber_callback_t {
                         const std::string _subscription_name,
                         const rmw_qos_profile_t _qos_profile,
                         const bool _use_pipe,
-                        const bool _verbose); //zz also pipe_logger
+                        const bool _verbose);
 
   void subscriber_callback(cpp_testbed_runner::msg::TestbedMessage::SharedPtr
                                                                msg);

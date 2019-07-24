@@ -79,7 +79,7 @@ subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
                       const std::string _subscription_name,
                       const rmw_qos_profile_t _qos_profile,
                       const bool _use_pipe,
-                      const bool _verbose) : //zz also pipe_logger
+                      const bool _verbose) :
          r_ptr(_r_ptr),
          subscription_name(_subscription_name),
 
@@ -119,32 +119,4 @@ void subscriber_callback_t::subscriber_callback(
     r_ptr->pipe_writer.log(ss.str());
   }
 }
-
-/*
-  auto callback =
-          [this](const std_msgs::msg::String::SharedPtr msg) -> void
-          {
-            std::cerr << "subscriber.zzzzzzzzzzzzzz\n";
-            this->subscriber_callback(msg);
-          };
-  subscription = _r_ptr->create_subscription<std_msgs::msg::String>(
-                      subscription_name, callback);
-
-
-
-}
-
-void subscriber_callback_t::subscriber_callback(
-                           const std_msgs::msg::String::SharedPtr msg) {
-  if(verbose) {
-    RCLCPP_INFO(node_logger, "subscription callback: '%s'",
-                 msg->data.c_str());
-  }
-
-  if(use_pipe) {
-    // use node_logger
-  } else {
-    // zz use pipe
-  }
-*/
 

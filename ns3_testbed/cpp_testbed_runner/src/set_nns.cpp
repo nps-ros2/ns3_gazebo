@@ -6,7 +6,6 @@
 #include <sys/stat.h> // mkfifo
 #include <sys/file.h> // lock
 #include <fcntl.h>
-//#include <pwd.h>
 #ifndef _GNU_SOURCE
   #define _GNU_SOURCE // setns
 #endif

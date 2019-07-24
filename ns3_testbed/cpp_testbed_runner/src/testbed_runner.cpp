@@ -98,11 +98,6 @@ void get_options(int argc, char *argv[]) {
         exit(1);
     }
   }
-
-//  // parse the remaining tokens that were not consumed by options
-//  argc -= optind;
-//  argv += optind;
-
 }
 
 // start, stay here until done.

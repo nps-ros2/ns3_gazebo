@@ -158,9 +158,6 @@ publishers_subscribers_t::publishers_subscribers_t(std::string filename,
       continue;
     }
 
-//    std::cerr << "row length: " << row.size() << "\n";
-//    std::cerr << "row[0]: '" << row[0] << "'\n";
-
     // mode publish
     if (row[0] == "publish") {
       mode = "publish";
@@ -182,9 +179,7 @@ publishers_subscribers_t::publishers_subscribers_t(std::string filename,
       continue;
     }
 
-    // consume valid entry
-
-    // range, either r<n> or r<n1-n2>
+    // consume range, either r<n> or r<n1-n2>
     std::vector<std::string> nodes = _range(row[0]);
     for (std::vector<std::string>::const_iterator it = nodes.begin();
             it != nodes.end(); ++it) {

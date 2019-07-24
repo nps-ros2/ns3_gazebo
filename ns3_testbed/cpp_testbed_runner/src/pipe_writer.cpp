@@ -8,7 +8,6 @@
 #include <sys/file.h> // lock
 #include <errno.h>
 #include <fcntl.h>
-//#include <pwd.h>
 #include <unistd.h>
 #include <string.h> // strerror
 #include "pipe_writer.hpp"
@@ -52,7 +51,6 @@ int _fd(bool use_pipe) {
 
 pipe_writer_t::pipe_writer_t(bool _use_pipe) :
                     use_pipe(_use_pipe), fd(_fd(_use_pipe)) {
-  std::cerr << "pipe_writer zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" << use_pipe << "\n";
 }
 
 void pipe_writer_t::log(std::string text) {

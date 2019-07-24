@@ -21,20 +21,15 @@ testbed_robot_t::testbed_robot_t(
           verbose(_verbose),
           ps_ptr(_ps_ptr) {
 
-//  std::cout << "testbed_robot_t.a" << std::endl;
   // publishers
   for (std::vector<publish_record_t>::const_iterator it =
                  ps_ptr->publishers.begin();
                  it != ps_ptr->publishers.end(); ++it) {
 
-//    std::cout << "testbed_robot_t.b" << std::endl;
-
     // not meant for this robot
     if(it->robot_name != r) {
       continue;
     }
-
-    std::cout << "testbed_robot_t.c" << std::endl;
 
     // add publisher
     publisher_callbacks.emplace_back(new publisher_callback_t(this,
@@ -44,13 +39,10 @@ testbed_robot_t::testbed_robot_t(
                                       verbose));
   }
 
-  std::cout << "testbed_robot_t.d" << std::endl;
   // subscribers
   for (std::vector<subscribe_record_t>::const_iterator it =
        ps_ptr->subscribers.begin();
        it != ps_ptr->subscribers.end(); ++it) {
-
-    std::cout << "testbed_robot_t.e" << std::endl;
 
     // not meant for this robot
     if(it->robot_name != r) {
@@ -58,11 +50,9 @@ testbed_robot_t::testbed_robot_t(
     }
 
     // add subscriber
-    std::cout << "testbed_robot_t.f" << std::endl;
     subscriber_callbacks.emplace_back(new subscriber_callback_t(this,
                        it->subscription, it->qos_profile, use_pipe, verbose));
   }
-  std::cout << "testbed_robot_t.g" << std::endl;
 }
 
 // entry function to start a testbed robot
@@ -75,10 +65,9 @@ void testbed_robot_run(std::string nns, std::string r,
     set_nns(nns);
   }
 
-  std::cout << "testbed_robot_run.a" << std::endl;
   auto node = std::make_shared<testbed_robot_t>(nns, r, use_pipe,
                                                 verbose, ps_ptr);
-  std::cout << "testbed_robot_run.b" << std::endl;
+
   rclcpp::spin(node); // block until Ctrl-C
 }
 
