@@ -6,11 +6,11 @@
 class pipe_writer_t {
 
   private:
-  const bool no_pipe;
+  const bool use_pipe;
   const int fd;
 
   public:
-  pipe_writer_t(bool _no_pipe);
+  pipe_writer_t(bool _use_pipe);
   void log(std::string text);
 };
 

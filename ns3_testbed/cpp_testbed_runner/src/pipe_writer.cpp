@@ -11,15 +11,15 @@
 #include <unistd.h>
 #include "pipe_writer.hpp"
 
-int _fd(bool no_pipe) {
+int _fd(bool use_pipe) {
 
   // no pipe
-  if(no_pipe) {
+  if(!use_pipe) {
     return 0;
   }
 
   // filename
-  std::string filename_string(getenv("PATH"));
+  std::string filename_string(getenv("HOME"));
   filename_string.append("/_testbed_pipe.pipe");
 
   const char *filename = filename_string.c_str();
@@ -46,12 +46,13 @@ int _fd(bool no_pipe) {
   return fd;
 }
 
-pipe_writer_t::pipe_writer_t(bool _no_pipe) :
-                    no_pipe(_no_pipe), fd(_fd(_no_pipe)) {
+pipe_writer_t::pipe_writer_t(bool _use_pipe) :
+                    use_pipe(_use_pipe), fd(_fd(_use_pipe)) {
+  std::cerr << "pipe_writer zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" << use_pipe << "\n";
 }
 
 void pipe_writer_t::log(std::string text) {
-  if(no_pipe) {
+  if(!use_pipe) {
     // no action
   }
 

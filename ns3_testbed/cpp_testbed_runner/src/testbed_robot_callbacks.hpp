@@ -41,7 +41,7 @@ class subscriber_callback_t {
   rclcpp::Subscription<cpp_testbed_runner::msg::TestbedMessage>::SharedPtr
                                                                subscription;
   const rmw_qos_profile_t qos_profile;
-  const bool no_pipe;
+  const bool use_pipe;
   const bool verbose;
   rclcpp::Logger node_logger;
 
@@ -49,7 +49,7 @@ class subscriber_callback_t {
   subscriber_callback_t(testbed_robot_t* _r_ptr,
                         const std::string _subscription_name,
                         const rmw_qos_profile_t _qos_profile,
-                        const bool _no_pipe,
+                        const bool _use_pipe,
                         const bool _verbose); //zz also pipe_logger
 
   void subscriber_callback(cpp_testbed_runner::msg::TestbedMessage::SharedPtr

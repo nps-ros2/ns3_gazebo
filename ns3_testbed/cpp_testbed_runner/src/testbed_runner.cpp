@@ -15,14 +15,14 @@
 static unsigned int count = 5;
 static const std::string default_setup_file = "example1.csv";
 static std::string setup_file = default_setup_file;
-static bool no_nns = true;
-static bool no_pipe = true;
+static bool use_nns = false;
+static bool use_pipe = false;
 static bool verbose = false;
 
 void print_usage()
 {
   printf("Usage:\n");
-  printf("testbed_runner -h|-H|-c <count>|--count <count>|-s <file>|--setup_file <file>|-n|--no_nns|-p|--no_pipe|-v|--verbose\n");
+  printf("testbed_runner -h|-H|-c <count>|--count <count>|-s <file>|--setup_file <file>|-n|--use_nns|-p|--use_pipe|-v|--verbose\n");
   printf("options:\n");
   printf("-h : Print this help function.\n");
   printf("-c <count>: Number of robots, starting at 1.\n");
@@ -45,8 +45,8 @@ void get_options(int argc, char *argv[]) {
       {"Help",                          no_argument, 0, 'H'},
       {"count",                   required_argument, 0, 'c'},
       {"setup_file",              required_argument, 0, 's'},
-      {"no_nns",                  required_argument, 0, 'n'},
-      {"no_pipe",                 required_argument, 0, 'p'},
+      {"use_nns",                 required_argument, 0, 'n'},
+      {"use_pipe",                required_argument, 0, 'p'},
       {"verbose",                       no_argument, 0, 'v'},
 
       // end
@@ -81,11 +81,11 @@ void get_options(int argc, char *argv[]) {
         break;
       }
       case 'n': {	// no nns
-        no_nns = false;
+        use_nns = false;
         break;
       }
       case 'p': {	// no pipe
-        no_pipe = false;
+        use_pipe = true;
         break;
       }
       case 'v': {	// count
@@ -106,8 +106,8 @@ void get_options(int argc, char *argv[]) {
 }
 
 // start, stay here until done.
-void start_robots(unsigned int count, bool no_nns, bool no_pipe,
-                         bool verbose, publishers_subscribers_t* ps_ptr) {
+void _start_robots(unsigned int count, bool use_nns, bool use_pipe,
+                   bool verbose, publishers_subscribers_t* ps_ptr) {
 
   std::vector<std::thread*> threads;
 
@@ -124,7 +124,7 @@ void start_robots(unsigned int count, bool no_nns, bool no_pipe,
 
     std::cout << "Starting " << nns << " " << r << std::endl;
     threads.push_back(new std::thread(testbed_robot_run, nns, r,
-                                      no_nns, no_pipe, verbose, ps_ptr));
+                                      use_nns, use_pipe, verbose, ps_ptr));
   }
   for (std::vector<std::thread*>::iterator it = threads.begin();
        it != threads.end(); ++it) {
@@ -146,13 +146,15 @@ int main(int argc, char * argv[])
   publishers_subscribers_t* publishers_subscribers_ptr =
                       new publishers_subscribers_t(setup_file, verbose);
 
-  std::cout << "num publisers: " << publishers_subscribers_ptr->publishers.size() << std::endl;
-  std::cout << "num subscribers: " << publishers_subscribers_ptr->subscribers.size() << std::endl;
+  std::cout << "num publisers: "
+            << publishers_subscribers_ptr->publishers.size() << "\n";
+  std::cout << "num subscribers: "
+            << publishers_subscribers_ptr->subscribers.size() << "\n";
 
   // call once per process for rclcpp
   rclcpp::init(argc, argv);
 
-  start_robots(count, no_nns, no_pipe, verbose, publishers_subscribers_ptr);
+  _start_robots(count, use_nns, use_pipe, verbose, publishers_subscribers_ptr);
   std::cout << "Running..." << std::endl;
 
   rclcpp::shutdown();

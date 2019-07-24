@@ -78,7 +78,7 @@ void publisher_callback_t::publish_message() {
 subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
                       const std::string _subscription_name,
                       const rmw_qos_profile_t _qos_profile,
-                      const bool _no_pipe,
+                      const bool _use_pipe,
                       const bool _verbose) : //zz also pipe_logger
          r_ptr(_r_ptr),
          subscription_name(_subscription_name),
@@ -86,7 +86,7 @@ subscriber_callback_t::subscriber_callback_t(testbed_robot_t* _r_ptr,
          subscription(0),
 
          qos_profile(_qos_profile),
-         no_pipe(_no_pipe),
+         use_pipe(_use_pipe),
          verbose(_verbose),
          node_logger(r_ptr->get_logger()) {
 
@@ -106,16 +106,16 @@ void subscriber_callback_t::subscriber_callback(
 
   // Source robot, subscription name, index number, size, latency dt
   std::stringstream ss;
-  ss << r_ptr->r
-     << msg->message_name
-     << msg->message_number
-     << msg->message.size()
+  ss << msg->source << ","
+     << msg->message_name << ","
+     << msg->message_number << ","
+     << msg->message.size() << ","
      << (_now()-msg->nanoseconds)/1000000000.0;
-  if(no_pipe || verbose) {
+  if(verbose || !use_pipe) {
     RCLCPP_INFO(node_logger, ss.str().c_str());
   }
 
-  if(!no_pipe) {
+  if(use_pipe) {
     r_ptr->pipe_writer.log(ss.str());
   }
 }
@@ -141,7 +141,7 @@ void subscriber_callback_t::subscriber_callback(
                  msg->data.c_str());
   }
 
-  if(no_pipe) {
+  if(use_pipe) {
     // use node_logger
   } else {
     // zz use pipe
