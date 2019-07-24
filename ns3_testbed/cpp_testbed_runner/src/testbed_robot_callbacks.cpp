@@ -46,12 +46,6 @@ publisher_callback_t::publisher_callback_t(testbed_robot_t* _r_ptr,
                      std::bind(&publisher_callback_t::publish_message, this))),
            node_logger(r_ptr->get_logger()) 
 {
-  std::cerr << "publisher_callback_t r_ptr: " << r_ptr << "\n";
-  std::cerr << "publisher_callback_t subscription: "
-            << subscription_name << "\n";
-  std::cerr << "publisher_callback_t this: " << this << "\n";
-  std::cerr << "publisher_callback_t size " << size << " frequency "
-           << frequency << "\n";
 }
 
 // http://www.theconstructsim.com/wp-content/uploads/2019/03/ROS2-IN-5-DAYS-e-book.pdf
