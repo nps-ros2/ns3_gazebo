@@ -1,0 +1,13 @@
+Publish,,,,,,,
+Node,Subscription,Frequency,Size,History,Depth,Reliability,Durability
+R2,odometry,1.0,500,keep_last,0,reliable,volatile
+R2,image,1.0,2500,keep_last,0,reliable,volatile
+,,,,,,,
+R3-29,odometry,1.0,500,keep_last,0,reliable,volatile
+R3-29,image,1.0,2500,keep_last,0,reliable,volatile
+,,,,,,,
+,,,,,,,
+Subscribe,,,,,,,
+Node,Subscription,History,Depth,Reliability,Durability,,
+R1,odometry,keep_last,0,reliable,volatile,,
+R1,image,keep_last,0,reliable,volatile,,

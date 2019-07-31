@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <memory>
 #include <string>
+#include <thread> // sleep_for
 #include <getopt.h>
 
 #include "rclcpp/rclcpp.hpp"
@@ -13,7 +14,8 @@
 #include "testbed_robot.hpp"
 
 static unsigned int count = 5;
-static const std::string default_setup_file = "example1.csv";
+static std::string _home(getenv("HOME"));
+static const std::string default_setup_file(_home.append("/gits/ns3_gazebo/ns3_testbed/csv_setup/example1.csv"));
 static std::string setup_file = default_setup_file;
 static bool use_nns = false;
 static bool use_pipe = false;
@@ -27,8 +29,8 @@ void print_usage()
   printf("-h : Print this help function.\n");
   printf("-c <count>: Number of robots, starting at 1.\n");
   printf("-s <setup file>: The CSV setup file.\n");
-  printf("-n: No network namespace.\n");
-  printf("-p: No pipe.\n");
+  printf("-n: Use network namespace.\n");
+  printf("-p: Use pipe.\n");
   printf("-v: verbose.\n");
 }
 
@@ -120,11 +122,18 @@ void _start_robots(unsigned int count, bool use_nns, bool use_pipe,
     std::cout << "Starting " << nns << " " << r << std::endl;
     threads.push_back(new std::thread(testbed_robot_run, nns, r,
                                       use_nns, use_pipe, verbose, ps_ptr));
+
+//    // sleep to let DDS get adjusted
+//    std::this_thread::sleep_for(std::chrono::seconds(1));
   }
+
+  // run until all join
+  std::cout << "Running..." << std::endl;
   for (std::vector<std::thread*>::iterator it = threads.begin();
        it != threads.end(); ++it) {
     (*it)->join();
   }
+  std::cout << "Done." << std::endl;
 }
 
 
@@ -150,7 +159,6 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);
 
   _start_robots(count, use_nns, use_pipe, verbose, publishers_subscribers_ptr);
-  std::cout << "Running..." << std::endl;
 
   rclcpp::shutdown();
   return 0;

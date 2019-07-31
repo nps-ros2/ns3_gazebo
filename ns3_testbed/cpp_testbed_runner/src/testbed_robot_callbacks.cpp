@@ -27,13 +27,13 @@ long _now() {
 publisher_callback_t::publisher_callback_t(testbed_robot_t* _r_ptr,
                        const std::string _subscription_name,
                        const unsigned int _size,
-                       const unsigned int _frequency,
+                       const std::chrono::microseconds _microseconds,
                        const rmw_qos_profile_t _qos_profile,
                        const bool _verbose) :
            r_ptr(_r_ptr),
            subscription_name(_subscription_name),
            size(_size),
-           frequency(_frequency),
+           microseconds(_microseconds),
            qos_profile(_qos_profile),
            verbose(_verbose),
 
@@ -41,8 +41,7 @@ publisher_callback_t::publisher_callback_t(testbed_robot_t* _r_ptr,
            publisher(_r_ptr->create_publisher<
                      cpp_testbed_runner::msg::TestbedMessage>(
                      _subscription_name, _qos_profile)),
-           timer(_r_ptr->create_wall_timer(
-                     std::chrono::microseconds(1000000/_frequency),
+           timer(_r_ptr->create_wall_timer(microseconds,
                      std::bind(&publisher_callback_t::publish_message, this))),
            node_logger(r_ptr->get_logger()) 
 {

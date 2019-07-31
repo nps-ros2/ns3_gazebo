@@ -11,12 +11,11 @@
 #include "ns3/tap-bridge-module.h"
 #include "ns3/random-variable-stream.h"
 
-static int COUNT;
+static int count = 5;
+static int length = 30;
 
 // parse user input
 int get_options(int argc, char *argv[]) {
-
-  int count = 5;
 
   // parse options
   int option_index; // not used
@@ -27,12 +26,13 @@ int get_options(int argc, char *argv[]) {
       {"help",                          no_argument, 0, 'h'},
       {"Help",                          no_argument, 0, 'H'},
       {"count",                   required_argument, 0, 'c'},
+      {"length",                  required_argument, 0, 'l'},
 
       // end
       {0,0,0,0}
     };
 
-    int ch = getopt_long(argc, argv, "hHc:", long_options, &option_index);
+    int ch = getopt_long(argc, argv, "hHc:l:", long_options, &option_index);
 
     if (ch == -1) {
       // no more arguments
@@ -55,6 +55,10 @@ int get_options(int argc, char *argv[]) {
         count = std::atoi(optarg);
         break;
       }
+      case 'l': {	// length
+        length = std::atoi(optarg);
+        break;
+      }
       default:
 //        std::cerr << "unexpected command character " << ch << "\n";
         exit(1);
@@ -65,7 +69,6 @@ int get_options(int argc, char *argv[]) {
 //  argc -= optind;
 //  argv += optind;
 
-  return count;
 }
 
 // set mobility for ground station and robot nodes
@@ -77,7 +80,7 @@ void set_mobility(ns3::NodeContainer& ns3_nodes) {
   // all antenna locations start deterministically at 0, 0, 0
   ns3::Ptr<ns3::ListPositionAllocator>positionAlloc =
                          ns3::CreateObject<ns3::ListPositionAllocator>();
-  for (int i=0; i<COUNT; i++) {
+  for (int i=0; i<count; i++) {
     positionAlloc->Add(ns3::Vector(0.0, 0.0, 0.0));
   }
 
@@ -89,7 +92,7 @@ void set_mobility(ns3::NodeContainer& ns3_nodes) {
   // robots
   ns3::MobilityHelper r_mobility;
   r_mobility.SetPositionAllocator(positionAlloc);
-  float y=30.0; // box size
+  float y=length; // box edge length
   r_mobility.SetMobilityModel(
           "ns3::RandomWalk2dMobilityModel", // model
           "Bounds", ns3::RectangleValue(ns3::Rectangle(-1.0,y,-1.0,y)),
@@ -104,7 +107,7 @@ void set_mobility(ns3::NodeContainer& ns3_nodes) {
 
   // apply mobility to GS and robots
   gs_mobility.Install(ns3_nodes.Get(0));
-  for (int i=1; i<COUNT; i++) {
+  for (int i=1; i<count; i++) {
     r_mobility.Install(ns3_nodes.Get(i));
   }
 }
@@ -117,8 +120,12 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
                           ns3::StringValue("ns3::RealtimeSimulatorImpl"));
   ns3::GlobalValue::Bind("ChecksumEnabled", ns3::BooleanValue(true));
 
+//  ns3::GlobalValue::Bind("SynchronizationMode",
+//                          ns3::StringValue("ns3::RealtimeSimulatorImpl::HardLimit"));
+  ns3::Config::SetDefault("ns3::RealtimeSimulatorImpl::SynchronizationMode",ns3::EnumValue(ns3::RealtimeSimulatorImpl::SYNC_HARD_LIMIT));
+
   // Create ns3_nodes
-  ns3_nodes.Create(COUNT);
+  ns3_nodes.Create(count);
 
   // Wifi settings
   ns3::WifiHelper wifi;
@@ -148,7 +155,7 @@ void ns3_setup(ns3::NodeContainer& ns3_nodes) {
   ns3::TapBridgeHelper tapBridge;
   tapBridge.SetAttribute("Mode", ns3::StringValue("UseLocal"));
   char buffer[10];
-  for (int i=0; i<COUNT; i++) {
+  for (int i=0; i<count; i++) {
     sprintf(buffer, "wifi_tap%d", i+1);
     tapBridge.SetAttribute("DeviceName", ns3::StringValue(buffer));
     tapBridge.Install(ns3_nodes.Get(i), devices.Get(i));
@@ -171,7 +178,7 @@ void interval_function(const ns3::NodeContainer& ns3_nodes) {
   std::cout << vector.x << "  " << vector.y << "  " << vector.z << "      ";
 
   // show robot x,y,z positions
-  for (int i=1; i<COUNT; i++) {
+  for (int i=1; i<count; i++) {
     ns3::Ptr<ns3::Node> node = ns3_nodes.Get(i);
     ns3::Ptr<ns3::RandomWalk2dMobilityModel> mobility_model =
                      node->GetObject<ns3::RandomWalk2dMobilityModel>();
@@ -182,7 +189,7 @@ void interval_function(const ns3::NodeContainer& ns3_nodes) {
 }
 
 int main(int argc, char *argv[]) {
-  COUNT = get_options(argc, argv);
+  get_options(argc, argv);
 
   // Force flush of the stdout buffer.
   setvbuf(stdout, NULL, _IONBF, BUFSIZ);
@@ -197,8 +204,10 @@ int main(int argc, char *argv[]) {
   // set to run for a while
   ns3::Simulator::Stop(ns3::Seconds(60*60*24*365.)); // 1 year
 //  ns3::Simulator::Stop(ns3::Seconds(6.0)); // 6 seconds
+//  ns3::Simulator::Stop(ns3::Seconds(60*3)); // 3 minutes
+//  ns3::Simulator::Stop(ns3::Seconds(3));
 
-  std::cout << "Starting ns-3 Wifi simulator for " << COUNT << " namespaces.\n";
+  std::cout << "Starting ns-3 Wifi simulator for " << count << " namespaces.\n";
 
   // start interval function
   interval_function(ns3_nodes);

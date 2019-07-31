@@ -6,6 +6,7 @@
 #include <sstream> // strngstream
 #include <fstream>
 #include <locale> // tolower
+#include <chrono>
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -13,7 +14,7 @@ class publish_record_t {
   public:
   const std::string robot_name;
   const std::string subscription;
-  const unsigned int frequency;
+  const std::chrono::microseconds microseconds; // period
   const unsigned int size;
 
   const std::string history;     // keep_last|keep_all

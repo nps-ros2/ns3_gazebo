@@ -34,7 +34,7 @@ testbed_robot_t::testbed_robot_t(
     // add publisher
     publisher_callbacks.emplace_back(new publisher_callback_t(this,
                                       it->subscription,
-                                      it->size, it->frequency,
+                                      it->size, it->microseconds,
                                       it->qos_profile,
                                       verbose));
   }
@@ -69,5 +69,6 @@ void testbed_robot_run(std::string nns, std::string r,
                                                 verbose, ps_ptr);
 
   rclcpp::spin(node); // block until Ctrl-C
+
 }
 

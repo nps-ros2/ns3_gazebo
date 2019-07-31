@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory> // for shared_ptr
 #include <string>
+#include <chrono>
 #include "rclcpp/rclcpp.hpp"
 #include "cpp_testbed_runner/msg/testbed_message.hpp"
 
@@ -14,7 +15,7 @@ class publisher_callback_t {
   testbed_robot_t* r_ptr;
   const std::string subscription_name;
   const unsigned int size;
-  const unsigned int frequency;
+  const std::chrono::microseconds microseconds;
   const rmw_qos_profile_t qos_profile;
   const bool verbose;
 
@@ -28,7 +29,7 @@ class publisher_callback_t {
   publisher_callback_t(testbed_robot_t* _r_ptr,
                        const std::string _subscription_name,
                        const unsigned int _size,
-                       const unsigned int _frequency,
+                       const std::chrono::microseconds _microseconds,
                        const rmw_qos_profile_t _qos_profile,
                        const bool _verbose);
   void publish_message();
