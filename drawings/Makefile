@@ -1,6 +1,6 @@
 drawings = \
 	nns_simple.png real.png simulated.png simulated_flows.png \
-	simulated_motion.png nns_wifi_only.png
+	simulated_motion.png nns_wifi_only.png nns_wifi_detail.png
 
 .SUFFIXES: .svg .pdf
 .SUFFIXES: .svg .png
