@@ -1,0 +1,2 @@
+in ns3_testbed_simtime we modify ns-3 to export simtime and we make our robot nodes show timing based on simtime.
+

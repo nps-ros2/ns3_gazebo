@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>cpp_testbed_runner</name>
+  <version>0.6.2</version>
+  <description>
+    Adapted from ROS2 demos.
+    also: https://github.com/ros2/demos/blob/master/pendulum_msgs/package.xml
+  </description>
+  <maintainer email="you@your.email.com">your name</maintainer>
+  <license>your license</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <build_depend>builtin_interfaces</build_depend>
+  <build_depend>rosidl_default_generators</build_depend>
+  <build_depend>example_interfaces</build_depend>
+  <build_depend>rclcpp</build_depend>
+  <build_depend>rcutils</build_depend>
+  <build_depend>rmw</build_depend>
+  <build_depend>rmw_implementation_cmake</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <exec_depend>builtin_interfaces</exec_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <exec_depend>example_interfaces</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>rcutils</exec_depend>
+  <exec_depend>rmw</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
