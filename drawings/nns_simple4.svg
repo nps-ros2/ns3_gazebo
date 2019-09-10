@@ -1497,7 +1497,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="155.57966"
+     inkscape:cx="140.07966"
      inkscape:cy="412.67327"
      inkscape:document-units="in"
      inkscape:current-layer="g2067"
@@ -1518,7 +1518,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1561,30 +1561,7 @@
            y="213" /></flowRegion><flowPara
          id="flowPara5074" /></flowRoot>    <g
        id="g2067"
-       transform="translate(5.2916693,35.71875)">
-      <path
-         sodipodi:nodetypes="cc"
-         inkscape:connector-curvature="0"
-         id="path1861-1-9"
-         d="m 89.958339,222.38749 -10e-6,-141.022917"
-         style="fill:none;stroke:#000000;stroke-width:0.97904211;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <text
-         id="text4522-6-5-2"
-         y="68.122986"
-         x="89.159073"
-         style="font-style:normal;font-weight:normal;font-size:5.64444494px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           id="tspan1071-0"
-           style="font-size:5.64444494px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="68.122986"
-           x="89.159073"
-           sodipodi:role="line">Wifi</tspan><tspan
-           style="font-size:5.64444494px;text-align:center;text-anchor:middle;stroke-width:0.26458332"
-           y="75.178543"
-           x="89.159073"
-           sodipodi:role="line"
-           id="tspan1701">(ns-3)</tspan></text>
-    </g>
+       transform="translate(5.2916693,35.71875)" />
     <g
        id="g4994-2-7"
        transform="translate(139.92381,28.045819)"
