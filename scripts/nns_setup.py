@@ -87,7 +87,7 @@ def do_teardown_nns(i):
 
 
 if __name__=="__main__":
-    DEFAULT_COUNT=5
+    DEFAULT_COUNT = 30
     parser = ArgumentParser(prog='lxc_setup.py',
                             description="Manage containers used with ns-3.")
     parser.add_argument("command", type=str, help="The command to execute.",
